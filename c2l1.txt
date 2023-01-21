@@ -2,7 +2,7 @@ lab cli-review start
 date
 date +%r
 file zcat
-wc Esc+.
+wc Esc+
 wc zcat
 head zcat
 tail zcat

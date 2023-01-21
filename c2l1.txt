@@ -1,12 +1,12 @@
 lab cli-review start
-date
-date +%r
-file zcat
+date >/home/student/step1.txt
+date +%r >/home/student/step2.txt
+file zcat >/home/student/step3.txt
 wc Esc+
-wc zcat
-head zcat
-tail zcat
-tail -n 20 zcat
+wc zcat >/home/student/step4.txt
+head zcat >/home/student/step5.txt
+tail zcat >/home/student/step6.txt
+tail -n 20 zcat >/home/student/step8.txt
 history
 !2
 echo 2 >/home/student/step9.txt

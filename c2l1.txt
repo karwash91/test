@@ -1,5 +1,7 @@
 lab cli-review start
+date
 date >/home/student/step1.txt
+date +%r
 date +%r >/home/student/step2.txt
 file zcat >/home/student/step3.txt
 wc Esc+
@@ -8,7 +10,6 @@ head zcat >/home/student/step5.txt
 tail zcat >/home/student/step6.txt
 tail -n 20 zcat >/home/student/step8.txt
 history
-!2
 echo 2 >/home/student/step9.txt
 history -a
 lab cli-review grade

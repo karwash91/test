@@ -1,1 +1,3 @@
-curl https://cloud.cet.ecu.edu/tenant/ictn2530/cgi-bin/grades/showmemygrades.cgi
+passwd
+lab cli-desktop grade
+lab cli-desktop finish

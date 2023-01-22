@@ -4,11 +4,15 @@ echo “gedit test.txt” > /home/student/gedit.txt
 cat /home/student/gedit.txt gedit test.txt
 echo su -l > /home/student/su.txt 
 cat /home/student/su.txt
+man 1 passwd
+passwd -l username
+passwd -u username
 echo “passwd –u freddy” >/home/student/unlock.txt
-cat /home/student/unlock.txt passwd –u freddy
+cat /home/student/unlock.txt
+passwd –u freddy
 echo “Protect your password.” > /home/student/passwd.txt
 cat /home/student/passwd.txt
-echo \ “name:password:UID:GID:GECOS:directory:shell” > \ /home/student/format.txt
+echo “name:password:UID:GID:GECOS:directory:shell” > /home/student/format.txt
 cat /home/student/format.txt
 echo “man –k ext4” > /home/student/man.txt
 cat /home/student/man.txt man –k ext4

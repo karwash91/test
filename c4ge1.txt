@@ -1,9 +1,12 @@
 lab help-manual start
 ssh student@servera 
+man 1 gedit
 echo “gedit test.txt” > /home/student/gedit.txt
 cat /home/student/gedit.txt gedit test.txt
+man 1 su
 echo su -l > /home/student/su.txt 
 cat /home/student/su.txt
+man 1 passwd student@servera ~
 echo “passwd –u freddy” >
 cat /home/student/unlock.txt passwd –u freddy
 echo “Protect your password.” >

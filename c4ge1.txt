@@ -4,7 +4,6 @@ echo “gedit test.txt” > /home/student/gedit.txt
 cat /home/student/gedit.txt gedit test.txt
 echo su -l > /home/student/su.txt 
 cat /home/student/su.txt
-man 1 passwd
 passwd -l username
 passwd -u username
 echo “passwd –u freddy” >/home/student/unlock.txt

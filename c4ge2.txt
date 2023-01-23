@@ -5,3 +5,8 @@ echo q > /home/student/step10.txt
 echo 'pinfo command' > /home/student/step11.txt
 lab help-info grade
 lab help-info finish
+
+curl hhttps://cloud.cet.ecu.edu/cgi-bin/grades/showmemygrades.cgi
+
+
+curl https://cloud.cet.ecu.edu/tenant/ictn2530/wmks-console/cgi-bin/grades/showmemygrades.cgi

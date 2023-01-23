@@ -1,14 +1,12 @@
 lab help-info start
 echo yes > /home/student/step3.txt
-echo '/nano' > /home/student/step7.txt
+cat /home/student/step3.txt
+echo /nano > /home/student/step7.txt
+cat /home/student/step7.txt
 echo q > /home/student/step10.txt
+cat /home/student/step10.txt
+pinfo nano
 echo 'pinfo command' > /home/student/step11.txt
+cat /home/student/step11.txt
 lab help-info grade
 lab help-info finish
-
-curl https://cloud.cet.ecu.edu/cgi-bin/grades/showmemygrades.cgi
-
-curl https://cloud.cet.ecu.edu/tenant/ictn2530/wmks-console/cgi-bin/grades/showmemygrades.cgi
-
-curl http://classroom.example.com/cgi-bin/grades/showmemygrades.cgi
-

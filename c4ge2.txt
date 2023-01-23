@@ -11,3 +11,4 @@ curl https://cloud.cet.ecu.edu/cgi-bin/grades/showmemygrades.cgi
 curl https://cloud.cet.ecu.edu/tenant/ictn2530/wmks-console/cgi-bin/grades/showmemygrades.cgi
 
 curl http://classroom.example.com/cgi-bin/grades/showmemygrades.cgi
+

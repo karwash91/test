@@ -1,0 +1,16 @@
+lab help-review start
+man man
+man -t passwd > passwd.ps
+man -t passwd > passwd.ps
+ls -al
+file /home/student/passwd.ps
+less /home/student/passwd.ps
+man evince
+evince /home/student/passwd.ps
+evince -w /home/student/passwd.ps
+evince -i 3 /home/student/passwd.ps
+man lp
+pinfo evince
+firefox /usr/share/doc
+lab help-review grade
+lab help-review finish

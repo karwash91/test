@@ -1,7 +1,7 @@
 lab files-make start
 ssh student@servera
 ls -l files/source.file
-ln /home/student/files/source.file /home/student/backups/source.backup
+ln /home/student/files/source.file \
 ls -l /home/student/files/
 ls -l /home/student/backups/
 ln -s /tmp /home/student/tempdir

@@ -1,18 +1,25 @@
 lab perms-cli start
-ssh student@servera...output omitted...[student@servera ~
-su -Password
+ssh student@servera
+su -
+redhat
 mkdir /home/consultants
 chown 
-ls -ld /home/consultantsdrwxr-xr-x. 2 root consultants 6 Feb 1 12
-chmod g+w /home/consultants[root@servera ~
-chmod 770 /home/consultants[root@servera ~
-exitlogout[student@servera ~
+ls -ld /home/consultants
+chmod g+w /home/consultants
+ls -ld /home/consultants
+chmod 770 /home/consultants
+ls -ld /home/consultants
+exit
+su - consultant1
+redhat
 cd /home/consultants
 touch consultant1.txt
-ls -l consultant1.txt-rw-rw-r--. 1 consultant1 consultant1 0 Feb 1 12
+ls -l consultant1.txt
 chown 
-ls -l consultant1.txt-rw-rw-r--. 1 consultant1 consultants 0 Feb 1 12
-exitlogout[student@servera ~
+ls -l consultant1.txt
+exit
+su - consultant2
+redhat
 cd /home/consultants/
 echo "text" >> consultant1.txt
 cat consultant1.txt

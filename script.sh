@@ -19,7 +19,7 @@ for file in $(ls /Users/kareem/Documents/test/*docx); do
     perl -pi -e 's/^#//g' $new
     perl -pi -e 's/^ //gm' $new
     cat $new | grep -v ^$ > $tmp
-    perl -pi -e "chomp if eof" $tmp
+    # perl -pi -e "chomp if eof" $tmp
     rm $new
     mv $tmp $original
 

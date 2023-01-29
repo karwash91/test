@@ -1,11 +1,11 @@
- lab edit-shell start
- (remember to put the
- ssh student@servera
+lab edit-shell start
+(remember to put the
+ssh student@servera
 
- echo "PS1='[\u@\h \t \w
- echo "export PATH" >> ~/.bashrc
- exit
- ssh student@servera
+echo "PS1='[\u@\h \t \w
+echo "export PATH" >> ~/.bashrc
+exit
+ssh student@servera
 
 echo $PS1 >/home/student/ps1.txt
 cat ps1.txt
@@ -13,29 +13,29 @@ cat ps1.txt
 cat ~/ps1.txt
 
 
- file=tmp.zdkei083
- echo $file
- ls -l $file
+file=tmp.zdkei083
+echo $file
+ls -l $file
 ls -l tmp.zdkei083 >~/ls.file
- 
+
 cat ~/ls.file
 
- rm $file
+rm $file
 
- rm $file
- 
+rm $file
+
 ls -l $file &>ls.nofile
 
 cat ls.nofile
 
- export EDITOR=vim
- echo $EDITOR
+export EDITOR=vim
+echo $EDITOR
 echo $EDITOR >/home/student/EDITOR.parent
 cat EDITOR.parent
 sh -c echo $EDITOR
 sh -c echo $EDITOR >EDITOR.child
 sh -c cat EDITOR.child
- exit
+exit
 
- lab edit-shell grade
- lab edit-shell finish
+lab edit-shell grade
+lab edit-shell finish

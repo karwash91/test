@@ -2,7 +2,6 @@
  echo yes > /home/student/step3.txt
  cat /home/student/step3.txt
 
- 
  echo /nano > /home/student/step7.txt
  cat /home/student/step7.txt
 

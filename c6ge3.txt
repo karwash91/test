@@ -1,6 +1,7 @@
 lab users-group-manage start
 ssh student@servera
 sudo su -
+password for student
 groupadd -g 30000 operators
 groupadd admin
 tail /etc/group
@@ -20,6 +21,7 @@ tail /etc/group
 echo "%admin ALL=(ALL) ALL" >> /etc/sudoers.d/admin
 su - sysadmin1
 sudo cat /etc/sudoers.d/admin
+password for sysadmin1
 exit
 exit
 exit

@@ -2,6 +2,7 @@ rht-vmctl fullreset servera -q
 lab users-pw-manage start
 ssh student@servera
 sudo usermod -L operator2
+password for student
 su - operator2
 redhat
 sudo usermod -U operator2
@@ -9,9 +10,16 @@ su - operator2
 redhat
 exit
 sudo usermod -L operator2
+password for student
 exit
 sudo chage -M 90 operator1
 sudo chage -l operator1
+Jan 25, 2019
+Apr 25, 2019
+never
+0
+90
+7
 sudo chage -d 0 operator1
 sudo chage -d 0 operator3
 su - operator1
@@ -23,6 +31,12 @@ exit
 date -d "+180 days" +%F
 sudo chage -E 2019-07-24 operator1
 sudo chage -l operator1
+Jan 25, 2019
+Apr 25, 2019
+never
+0
+90
+7
 exit
 lab users-pw-manage grade
 lab users-pw-manage finish

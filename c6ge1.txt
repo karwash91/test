@@ -17,8 +17,47 @@ $ echo $PATH >~/PATH.student
 $ cat ~/PATH.student
 $
 $ sudo su
+password for student: student
+#
+# id
+# id >~/id.su
+# cat ~/id.su
+#
+# pwd
+# pwd >~/pwd.su
+#
+# cat ~/pwd.su
+#
+# echo $HOME
+# echo $PATH
+# echo $HOME > ~/HOME.su
+# cat ~/HOME.su
+# echo $PATH > ~/PATH.su
+#
+# cat ~/PATH.su
+#
+# exit
 $
 $ sudo su -
+#
+# id
+# id > ~/id.root
+#
+# cat ~/id.root
+#
+# pwd
+#
+# pwd >~/pwd.root
+# cat ~/pwd.root
+#
+# echo $HOME
+# echo $PATH
+# echo $HOME >~/HOME.root
+# cat ~/HOME.root
+# echo $PATH >~/PATH.root
+# cat ~/PATH.root
+#
+# exit
 $
 $ sudo cat /etc/sudoers.d/operator1
 $ su - operator1
@@ -29,8 +68,19 @@ $
 $ cat step6.2.operator1
 $
 $ sudo tail -5 /var/log/messages
+password for operator1: redhat
+: FAILED SU (to operator1) student on pts/1
+: FAILED SU (to operator1) student on pts/1
+: FAILED SU (to operator1) student on pts/1
+: (to operator1) student on pts/1
+: (to operator1) student on pts/1
 $ sudo tail -5 /var/log/messages \ &>~/step6.3.operator1
 $ cat ~/step6.3.operator1
+: Starting dnf makecache...
+: Metadata cache refreshed recently.
+: Started dnf makecache.
+: (to operator1) student on pts/1
+: (to operator1) student on pts/1
 $
 $ cp /etc/motd /etc/motdOLD
 $ cp /etc/motd /etc/motdOLD &>~/step6.4.operator1
@@ -39,6 +89,7 @@ $
 $ sudo cp /etc/motd /etc/motdOLD
 $
 $ sudo cp /etc/motd /etc/motdOLD \ &>~/step6.5.operator1
+password for operator1:
 $ cat ~/step6.5.operator1
 $
 $ rm /etc/motdOLD

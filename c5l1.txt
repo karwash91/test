@@ -7,23 +7,3 @@ ls Documents/ | tee -a editing_final_lab.txt
 cat editing_final_lab.txt
 lab edit-review grade
 lab edit-review finish
-
--rw-  1 student   310 Jan 21  .bash_history
--rw-  1 student    18 Oct 12  .bash_logout
--rw-  1 student   141 Oct 12  .bash_profile
--rw-  1 student   312 Oct 12  .bashrc
-drwx  8 student   201 Jan 14  .cache
-drwx 10 student   203 Jan 14  .config
-drwx  2 student     6 Jan 14  Documents
-drwx  2 student     6 Jan 14  Downloads
--rw-  1 student     0 Jan 22  editing_final_lab.txt
--rw-  1 student    16 Jan 14  .esd_auth
--rw-  1 student   310 Jan 14  .ICEauthority
-drwx  3 student    19 Jan 14  .local
-drwx  2 student     6 Jan 14  Music
-drwx  2 student     6 Jan 14  Pictures
-drwx  3 student    19 Jan 14  .pki
-drwx  2 student    73 Jan 14  .ssh
-drwx  2 student     6 Jan 14  Templates
-drwx  2 student     6 Jan 14  Videos
--rw-  1 student  1095 Jan 14  .viminfo

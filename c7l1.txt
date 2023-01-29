@@ -1,0 +1,35 @@
+lab perms-review start
+ssh student@serverb
+su -
+redhat
+mkdir /home/techdocs
+chown 
+su - tech1
+touch /home/techdocs/techdoc1.txt
+ls -ld /home/techdocs/
+exit
+chmod 2770 /home/techdocs
+ls -ld /home/techdocs
+su - tech1
+touch /home/techdocs/techdoc1.txt
+ls -l /home/techdocs/techdoc1.txt
+exit
+su - tech2
+cd /home/techdocs
+echo "This is the first tech doc." > techdoc1.txt
+exit
+su - database1
+echo "This is the first tech doc." >> /home/techdocs/techdoc1.txt
+ls -l /home/techdocs/techdoc1.txt
+exit
+su - student
+umask
+exit
+cat /etc/profile.d/local-umask.sh
+exit
+exit
+ssh student@serverb
+umask
+exit
+lab perms-review grade
+lab perms-review finish

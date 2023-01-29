@@ -42,6 +42,7 @@ cat ~/PATH.root
 exit
 sudo cat /etc/sudoers.d/operator1
 su - operator1
+redhat
 tail -5 /var/log/messages
 tail -5 /var/log/messages &>~/step6.2.operator1
 cat step6.2.operator1

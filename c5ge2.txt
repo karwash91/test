@@ -5,25 +5,33 @@ echo "PS1='[\u@\h \t \w
 echo "export PATH" >> ~/.bashrc
 exit
 ssh student@servera
-echo $PS1 >/home/student/ps1.txt
-cat ps1.txt
-cat ~/ps1.txt
-file=tmp.zdkei083
-echo $file
-ls -l $file
-ls -l tmp.zdkei083 >~/ls.file
-cat ~/ls.file
-rm $file
-rm $file
-ls -l $file &>ls.nofile
-cat ls.nofile
-export EDITOR=vim
-echo $EDITOR
-echo $EDITOR >/home/student/EDITOR.parent
-cat EDITOR.parent
-sh -c echo $EDITOR
-sh -c echo $EDITOR >EDITOR.child
-sh -c cat EDITOR.child
-exit
+45
+22
+22
+22
+22
+47
+48
+59
+26
+28
+28
+30
+59
+59
+59
+59
+34
+35
+35
+35
+46
+46
+39
+39
+39
+39
+39
+47
 lab edit-shell grade
 lab edit-shell finish

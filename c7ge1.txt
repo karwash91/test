@@ -1,0 +1,22 @@
+lab perms-cli start
+ssh student@servera...output omitted...[student@servera ~
+su -Password
+mkdir /home/consultants
+chown 
+ls -ld /home/consultantsdrwxr-xr-x. 2 root consultants 6 Feb 1 12
+chmod g+w /home/consultants[root@servera ~
+chmod 770 /home/consultants[root@servera ~
+exitlogout[student@servera ~
+cd /home/consultants
+touch consultant1.txt
+ls -l consultant1.txt-rw-rw-r--. 1 consultant1 consultant1 0 Feb 1 12
+chown 
+ls -l consultant1.txt-rw-rw-r--. 1 consultant1 consultants 0 Feb 1 12
+exitlogout[student@servera ~
+cd /home/consultants/
+echo "text" >> consultant1.txt
+cat consultant1.txt
+exit
+exit
+lab perms-cli grade
+lab perms-cli finish

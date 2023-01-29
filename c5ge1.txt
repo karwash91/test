@@ -1,4 +1,0 @@
-lab edit-vim start
-ssh student@servera
-vimtutor
-lab edit-vim grade

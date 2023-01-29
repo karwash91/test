@@ -1,2 +1,0 @@
-passwd
-lab cli-desktop grade

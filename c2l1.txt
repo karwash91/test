@@ -1,0 +1,16 @@
+lab cli-review start
+date
+date +%r
+file zcat
+wc Esc+.
+wc zcat
+head zcat
+tail zcat
+!!
+tail -n 20 zcat
+history
+!2
+echo 2 >/home/student/step9.txt.
+history -a
+lab cli-review grade
+lab cli-review finish

@@ -1,21 +1,21 @@
-lab help-manal tart
-h tent@ervera 
-ech “geit tet.txt” > /hme/tent/geit.txt
-cat /hme/tent/geit.txt geit tet.txt
-ech  -l > /hme/tent/.txt 
-cat /hme/tent/.txt
-man 1 paw
-paw -l ername
-paw - ername
-ech “paw - frey” >/hme/tent/nlck.txt
-cat /hme/tent/nlck.txt
-paw - frey
-ech “Prtect yr pawr.” > /hme/tent/paw.txt
-cat /hme/tent/paw.txt
-ech “name
-cat /hme/tent/frmat.txt
-ech “man -k ext4” > /hme/tent/man.txt
-cat /hme/tent/man.txt man -k ext4
+lab help-manual start
+ssh student@servera 
+echo “gedit test.txt” > /home/student/gedit.txt
+cat /home/student/gedit.txt gedit test.txt
+echo su -l > /home/student/su.txt 
+cat /home/student/su.txt
+man 1 passwd
+passwd -l username
+passwd -u username
+echo “passwd -u freddy” >/home/student/unlock.txt
+cat /home/student/unlock.txt
+passwd -u freddy
+echo “Protect your password.” > /home/student/passwd.txt
+cat /home/student/passwd.txt
+echo “name
+cat /home/student/format.txt
+echo “man -k ext4” > /home/student/man.txt
+cat /home/student/man.txt man -k ext4
 exit
-lab help-manal grae
-lab help-manal finih
+lab help-manual grade
+lab help-manual finish

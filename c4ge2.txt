@@ -1,12 +1,12 @@
-lab help-inf tart
-ech ye > /hme/tent/tep3.txt
-cat /hme/tent/tep3.txt
-ech /nan > /hme/tent/tep7.txt
-cat /hme/tent/tep7.txt
-ech q > /hme/tent/tep10.txt
-cat /hme/tent/tep10.txt
-pinf nan
-ech 'pinf cmman' > /hme/tent/tep11.txt
-cat /hme/tent/tep11.txt
-lab help-inf grae
-lab help-inf finih
+lab help-info start
+echo yes > /home/student/step3.txt
+cat /home/student/step3.txt
+echo /nano > /home/student/step7.txt
+cat /home/student/step7.txt
+echo q > /home/student/step10.txt
+cat /home/student/step10.txt
+pinfo nano
+echo 'pinfo command' > /home/student/step11.txt
+cat /home/student/step11.txt
+lab help-info grade
+lab help-info finish

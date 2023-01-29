@@ -1,22 +1,27 @@
-rht-vmctl fllreet ervera -q
-lab er-pw-manage tart
-h tent@ervera
- erm -L peratr2
- - peratr2
- erm -U peratr2
- - peratr2
+rht-vmctl fullreset servera -q
+lab users-pw-manage start
+ssh student@servera
+sudo usermod -L operator2
+student
+su - operator2
+redhat
+sudo usermod -U operator2
+su - operator2
+redhat
 exit
- erm -L peratr2
+sudo usermod -L operator2
+student
 exit
- chage -M 90 peratr1
- chage -l peratr1
- chage - 0 peratr1
- chage - 0 peratr3
- - peratr1
+sudo chage -M 90 operator1
+sudo chage -l operator1
+sudo chage -d 0 operator1
+sudo chage -d 0 operator3
+su - operator1
+redhat
 exit
-ate - "+180 ay" +%F
- chage -E 2019-07-24 peratr1
- chage -l peratr1
+date -d "+180 days" +%F
+sudo chage -E 2019-07-24 operator1
+sudo chage -l operator1
 exit
-lab er-pw-manage grae
-lab er-pw-manage finih
+lab users-pw-manage grade
+lab users-pw-manage finish

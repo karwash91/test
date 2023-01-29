@@ -1,17 +1,17 @@
-lab help-review tart
+lab help-review start
 man man
-man -t paw > paw.p
-man -t paw > paw.p
-l -al
-file /hme/tent/paw.p
-le /hme/tent/paw.p
-man -k ptcript viewer
+man -t passwd > passwd.ps
+man -t passwd > passwd.ps
+ls -al
+file /home/student/passwd.ps
+less /home/student/passwd.ps
+man -k postscript viewer
 man evince
-evince /hme/tent/paw.p
-evince -w /hme/tent/paw.p
-evince -i 3 /hme/tent/paw.p
+evince /home/student/passwd.ps
+evince -w /home/student/passwd.ps
+evince -i 3 /home/student/passwd.ps
 man lp
-pinf evince
-firefx /r/hare/c
-lab help-review grae
-lab help-review finih
+pinfo evince
+firefox /usr/share/doc
+lab help-review grade
+lab help-review finish

@@ -1,11 +1,11 @@
-lab file-make tart
-h tent@ervera
-l -l file/rce.file
-ln /hme/tent/file/rce.file /hme/tent/backp/rce.backp
-l -l /hme/tent/file/
-l -l /hme/tent/backp/
-ln - /tmp /hme/tent/tempir
-l -l /hme/tent/tempir
+lab files-make start
+ssh student@servera
+ls -l files/source.file
+ln /home/student/files/source.file /home/student/backups/source.backup
+ls -l /home/student/files/
+ls -l /home/student/backups/
+ln -s /tmp /home/student/tempdir
+ls -l /home/student/tempdir
 exit
-lab file-make grae
-lab file-make finih
+lab files-make grade
+lab files-make finish

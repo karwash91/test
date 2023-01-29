@@ -1,3 +1,4 @@
+set -x
 IFS=$'\n'
 for file in $(ls /Users/kareem/Documents/test/*docx); do
     dos2unix $file 2>/dev/null

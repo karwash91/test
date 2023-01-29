@@ -18,7 +18,7 @@ for file in $(ls /Users/kareem/Documents/test/*docx); do
     perl -pi -e 's/^\$//g' $new
     perl -pi -e 's/^#//g' $new
     perl -pi -e 's/^ //gm' $new
-    cat $new | grep -v ^$ | head -n -1 > $tmp
+    cat $new | grep -v ^$ | tail -r | tail -n +2 | tail -r > $tmp
     mv $tmp $new
     rm $original
     mv $new $original

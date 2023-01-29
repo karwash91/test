@@ -1,0 +1,42 @@
+lab files-manage start
+ssh student@servera
+mkdir Music Pictures Videos
+touch song1.mp3 song2.mp3 song3.mp3 song4.mp3 song5.mp3 song6.mp3
+touch snap1.jpg snap2.jpg snap3.jpg snap4.jpg snap5.jpg snap6.jpg
+touch film1.avi film2.avi film3.avi film4.avi film5.avi film6.avi
+ls -l
+mv song1.mp3 song2.mp3 song3.mp3 song4.mp3 song5.mp3 song6.mp3 Music
+mv snap1.jpg snap2.jpg snap3.jpg snap4.jpg snap5.jpg snap6.jpg Pictures
+mv film1.avi film2.avi film3.avi film4.avi film5.avi film6.avi Videos
+ls -l Music Pictures Videos
+mkdir friends family work
+ls -l
+cd friends
+cp ~/Music/song1.mp3 ~/Music/song2.mp3 ~/Pictures/snap1.jpg ~/Pictures/snap2.jpg ~/Videos/film1.avi ~/Videos/film2.avi .
+ls -l
+ls -l >~/step6.1.txt
+cat ~/step6.1.txt
+cd ../family
+cp ~/Music/song3.mp3 ~/Music/song4.mp3 ~/Pictures/snap3.jpg ~/Pictures/snap4.jpg ~/Videos/film3.avi ~/Videos/film4.avi .
+ls -l
+ls -l >~/step6.2.txt
+49
+cd ../work
+cp ~/Music/song5.mp3 ~/Music/song6.mp3 ~/Pictures/snap5.jpg ~/Pictures/snap6.jpg ~/Videos/film5.avi ~/Videos/film6.avi .
+ls -l
+52
+52
+52
+52
+cd
+rmdir family friends
+rm -r family friends
+ls -l
+cd work
+rm song5.mp3 song6.mp3 snap5.jpg snap6.jpg film5.avi film6.avi
+ls -l
+cd
+rmdir work
+ls -l
+exit
+lab files-manage grade

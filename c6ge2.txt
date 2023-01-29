@@ -5,10 +5,13 @@ student
 useradd operator1
 tail /etc/passwd
 passwd operator1
+redhat
 useradd operator2
 passwd operator2
+redhat
 useradd operator3
 passwd operator3
+redhat
 usermod -c "Operator One" operator1
 usermod -c "Operator Two" operator2
 tail /etc/passwd

@@ -1,3 +1,5 @@
 passwd
+student
+55TurnK3y
 lab cli-desktop grade
 lab cli-desktop finish

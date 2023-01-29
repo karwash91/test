@@ -1,94 +1,94 @@
- lab users-sudo start
- ssh student@servera
+lab users-sudo start
+ssh student@servera
 
- id
- id >~/id.student
- cat ~/id.student
+id
+id >~/id.student
+cat ~/id.student
 
- pwd
- pwd >~/pwd.student
- cat ~/pwd.student
+pwd
+pwd >~/pwd.student
+cat ~/pwd.student
 
- echo $HOME
- echo $PATH
- echo $HOME >~/HOME.student
- cat ~/HOME.student
- echo $PATH >~/PATH.student
- cat ~/PATH.student
+echo $HOME
+echo $PATH
+echo $HOME >~/HOME.student
+cat ~/HOME.student
+echo $PATH >~/PATH.student
+cat ~/PATH.student
 
- sudo su
+sudo su
 
- id
- id >~/id.su
- cat ~/id.su
+id
+id >~/id.su
+cat ~/id.su
 
- pwd
- pwd >~/pwd.su
+pwd
+pwd >~/pwd.su
 
- cat ~/pwd.su
+cat ~/pwd.su
 
- echo $HOME
- echo $PATH
- echo $HOME > ~/HOME.su
- cat ~/HOME.su
- echo $PATH > ~/PATH.su
+echo $HOME
+echo $PATH
+echo $HOME > ~/HOME.su
+cat ~/HOME.su
+echo $PATH > ~/PATH.su
 
- cat ~/PATH.su
+cat ~/PATH.su
 
- exit
+exit
 
- sudo su -
+sudo su -
 
- id
- id > ~/id.root
+id
+id > ~/id.root
 
- cat ~/id.root
+cat ~/id.root
 
- pwd
+pwd
 
- pwd >~/pwd.root
- cat ~/pwd.root
+pwd >~/pwd.root
+cat ~/pwd.root
 
- echo $HOME
- echo $PATH
- echo $HOME >~/HOME.root
- cat ~/HOME.root
- echo $PATH >~/PATH.root
- cat ~/PATH.root
+echo $HOME
+echo $PATH
+echo $HOME >~/HOME.root
+cat ~/HOME.root
+echo $PATH >~/PATH.root
+cat ~/PATH.root
 
- exit
+exit
 
- sudo cat /etc/sudoers.d/operator1
- su - operator1
+sudo cat /etc/sudoers.d/operator1
+su - operator1
 
- tail -5 /var/log/messages
- tail -5 /var/log/messages &>~/step6.2.operator1
+tail -5 /var/log/messages
+tail -5 /var/log/messages &>~/step6.2.operator1
 
- cat step6.2.operator1
+cat step6.2.operator1
 
- sudo tail -5 /var/log/messages
- sudo tail -5 /var/log/messages \ &>~/step6.3.operator1
- cat ~/step6.3.operator1
+sudo tail -5 /var/log/messages
+sudo tail -5 /var/log/messages \ &>~/step6.3.operator1
+cat ~/step6.3.operator1
 
- cp /etc/motd /etc/motdOLD
- cp /etc/motd /etc/motdOLD &>~/step6.4.operator1
- cat ~/step6.4.operator1
+cp /etc/motd /etc/motdOLD
+cp /etc/motd /etc/motdOLD &>~/step6.4.operator1
+cat ~/step6.4.operator1
 
- sudo cp /etc/motd /etc/motdOLD
+sudo cp /etc/motd /etc/motdOLD
 
- sudo cp /etc/motd /etc/motdOLD \ &>~/step6.5.operator1
- cat ~/step6.5.operator1
+sudo cp /etc/motd /etc/motdOLD \ &>~/step6.5.operator1
+cat ~/step6.5.operator1
 
- rm /etc/motdOLD
+rm /etc/motdOLD
 
- sudo rm /etc/motdOLD
+sudo rm /etc/motdOLD
 
- sudo rm /etc/motdOLD &>~/step6.7.operator1
- cat ~/step6.7.operator1
+sudo rm /etc/motdOLD &>~/step6.7.operator1
+cat ~/step6.7.operator1
 
- exit
+exit
 
- exit
+exit
 
- lab users-sudo grade
- lab users-sudo finish
+lab users-sudo grade
+lab users-sudo finish

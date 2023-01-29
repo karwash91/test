@@ -27,8 +27,8 @@ for file in $(ls /Users/kareem/Documents/test/*docx); do
 
 done
 
-git add .
+git add ./*txt
 git commit -am "push file" &>/dev/null
-git push origin main &>/dev/null
+git push -f origin main &>/dev/null
 
 echo 'Done!'

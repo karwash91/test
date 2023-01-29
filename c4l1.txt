@@ -5,6 +5,7 @@ $ man -t passwd > passwd.ps
 $ ls -al
 $ file /home/student/passwd.ps
 $ less /home/student/passwd.ps
+# man -k postscript viewer
 $ man evince
 $ evince /home/student/passwd.ps
 $ evince -w /home/student/passwd.ps

@@ -1,0 +1,27 @@
+lab users-group-manage start
+ssh student@servera
+sudo su -
+groupadd -g 30000 operators
+groupadd admin
+tail /etc/group
+usermod -aG operators operator1
+usermod -aG operators operator2
+usermod -aG operators operator3
+id operator1
+id operator2
+id operator3
+usermod -aG admin sysadmin1
+usermod -aG admin sysadmin2
+usermod -aG admin sysadmin3
+id sysadmin1
+id sysadmin2
+id sysadmin3
+tail /etc/group
+echo "%admin ALL=(ALL) ALL" >> /etc/sudoers.d/admin
+su - sysadmin1
+sudo cat /etc/sudoers.d/admin
+exit
+exit
+exit
+lab users-group-manage grade
+lab users-group-manage finish

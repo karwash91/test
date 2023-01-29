@@ -1,7 +1,7 @@
 lab files-review start
 ssh student@serverb
 mkdir -p ~/Documents/project_plans
-touch \
+touch ~/Documents/project_plans/{season1,season2}_project_plan.odf
 ls -lR Documents/
 touch tv_season{1..2}_episode{1..6}.ogg
 ls tv*
@@ -38,8 +38,8 @@ cp chapters/mystery_chapter[56
 ls chapters
 ls changes
 cd changes
-cp mystery_chapter5.odf \
-cp mystery_chapter5.odf \
+cp mystery_chapter5.odf mystery_chapter5_$(date +%F).odf
+cp mystery_chapter5.odf mystery_chapter5_$(date +%s).odf
 ls
 rm mystery*
 cd ..
@@ -50,7 +50,7 @@ rm -r vacation
 ls
 cd
 mkdir ~/Documents/backups
-ln ~/Documents/project_plans/season2_project_plan.odf \
+ln ~/Documents/project_plans/season2_project_plan.odf ~/Documents/backups/season2_project_plan.odf.back
 ls -lR ~/Documents/
 exit
 lab files-review grade

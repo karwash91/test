@@ -1,0 +1,32 @@
+lab perms-default start
+ssh student@servera
+su - operator1
+redhat
+umask
+mkdir /tmp/shared
+ls -ld /tmp/shared
+touch /tmp/shared/defaults
+ls -l /tmp/shared/defaults
+chown 
+ls -ld /tmp/shared
+touch /tmp/shared/group
+ls -l /tmp/shared/group
+chmod g+s /tmp/shared
+touch /tmp/shared/operations_database.txt
+ls -l /tmp/shared/operations_database.txt
+echo text >> /tmp/shared/operations_network.txt
+ls -l /tmp/shared/operations_network.txt
+umask 027
+umask
+touch /tmp/shared/operations_production.txt
+ls -l /tmp/shared/operations_production.txt
+ssh operator1@servera
+umask
+echo "umask 007" >> ~/.bashrc
+cat ~/.bashrc
+exit
+ssh operator1@servera
+umask
+exit
+lab perms-default grade
+lab perms-default finish

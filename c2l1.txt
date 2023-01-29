@@ -13,3 +13,4 @@ history
 echo 2 >/home/student/step9.txt.
 history -a
 lab cli-review grade
+lab cli-review finish

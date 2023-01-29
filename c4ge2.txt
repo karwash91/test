@@ -9,3 +9,4 @@ pinfo nano
 echo 'pinfo command' > /home/student/step11.txt
 cat /home/student/step11.txt
 lab help-info grade
+lab help-info finish

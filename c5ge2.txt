@@ -34,3 +34,4 @@ ssh student@servera
 39
 47
 lab edit-shell grade
+lab edit-shell finish

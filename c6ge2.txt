@@ -17,3 +17,4 @@ tail /etc/passwd
 exit
 exit
 lab users-manage grade
+lab users-manage finish

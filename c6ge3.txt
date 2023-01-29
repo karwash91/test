@@ -26,3 +26,4 @@ exit
 exit
 exit
 lab users-group-manage grade
+lab users-group-manage finish

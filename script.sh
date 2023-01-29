@@ -1,4 +1,3 @@
-set -x
 IFS=$'\n'
 for file in $(ls /Users/kareem/Documents/test/*docx); do
     dos2unix $file 2>/dev/null
@@ -20,13 +19,8 @@ for file in $(ls /Users/kareem/Documents/test/*docx); do
     perl -pi -e 's/^#//g' $new
     perl -pi -e 's/^ //gm' $new
     cat $new | grep -v ^$ > $tmp
-    num_lines=$(wc -l $tmp | awk -F ' ' '{print $1}')
-    new_num_lines=$(echo $(($num_lines-1)))
-    echo $num_lines
-    echo $new_num_lines
-    cat $tmp | head -n $new_num_lines > $new
-    rm $tmp
-    mv $new $original
+    rm $new
+    mv $tmp $original
 
     echo $original
 

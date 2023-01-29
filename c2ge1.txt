@@ -1,2 +1,3 @@
 passwd
 lab cli-desktop grade
+lab cli-desktop finish

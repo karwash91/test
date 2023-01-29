@@ -6,3 +6,4 @@ echo "----------------------------------------" >> editing_final_lab.txt
 ls Documents/ | tee -a editing_final_lab.txt
 cat editing_final_lab.txt
 lab edit-review grade
+lab edit-review finish

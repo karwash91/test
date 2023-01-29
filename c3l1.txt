@@ -54,3 +54,4 @@ ln ~/Documents/project_plans/season2_project_plan.odf ~/Documents/backups/season
 ls -lR ~/Documents/
 exit
 lab files-review grade
+lab files-review finish

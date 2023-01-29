@@ -64,3 +64,4 @@ cat ~/step6.7.operator1
 exit
 exit
 lab users-sudo grade
+lab users-sudo finish

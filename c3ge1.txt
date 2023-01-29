@@ -40,3 +40,4 @@ rmdir work
 ls -l
 exit
 lab files-manage grade
+lab files-manage finish

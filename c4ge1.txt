@@ -18,3 +18,4 @@ echo “man -k ext4” > /home/student/man.txt
 cat /home/student/man.txt man -k ext4
 exit
 lab help-manual grade
+lab help-manual finish

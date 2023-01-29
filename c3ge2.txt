@@ -8,3 +8,4 @@ ln -s /tmp /home/student/tempdir
 ls -l /home/student/tempdir
 exit
 lab files-make grade
+lab files-make finish

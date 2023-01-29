@@ -1,12 +1,17 @@
-lab help-info start
-echo yes > /home/student/step3.txt
-cat /home/student/step3.txt
-echo /nano > /home/student/step7.txt
-cat /home/student/step7.txt
-echo q > /home/student/step10.txt
-cat /home/student/step10.txt
-pinfo nano
-echo 'pinfo command' > /home/student/step11.txt
-cat /home/student/step11.txt
-lab help-info grade
-lab help-info finish
+$ lab help-info start
+$ echo yes > /home/student/step3.txt
+$ cat /home/student/step3.txt
+$
+$ echo /nano > /home/student/step7.txt
+$ cat /home/student/step7.txt
+$
+$ echo q > /home/student/step10.txt
+$ cat /home/student/step10.txt
+$
+$ pinfo nano
+$
+$ echo 'pinfo command' > /home/student/step11.txt
+$ cat /home/student/step11.txt
+$
+$ lab help-info grade
+$ lab help-info finish

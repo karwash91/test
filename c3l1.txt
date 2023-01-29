@@ -1,6 +1,5 @@
 lab files-review start
 ssh student@serverb
-
 mkdir -p ~/Documents/project_plans
 touch ~/Documents/project_plans/{season1,season2}_project_plan.odf
 ls -lR Documents/
@@ -50,11 +49,9 @@ ls
 rm -r vacation
 ls
 cd
-
 mkdir ~/Documents/backups
 ln ~/Documents/project_plans/season2_project_plan.odf ~/Documents/backups/season2_project_plan.odf.back
 ls -lR ~/Documents/
 exit
-
 lab files-review grade
 lab files-review finish

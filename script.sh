@@ -24,7 +24,7 @@ for file in $(ls /Users/kareem/Documents/test/*docx); do
     echo $num_lines
     echo $new_num_lines
     cat $tmp | head -n $new_num_lines > $new
-    rm $original
+    rm $tmp
     mv $new $original
 
     echo $original

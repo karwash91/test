@@ -18,8 +18,10 @@ for file in $(ls /Users/kareem/Documents/test/*docx); do
     perl -pi -e 's/^\$//g' $new
     perl -pi -e 's/^#//g' $new
     perl -pi -e 's/^ //gm' $new
-    cat $new | grep -v ^$ | tail -r | tail -n +2 | tail -r > $tmp
-    mv $tmp $new
+    cat $new | grep -v ^$ > $tmp
+    num_lines=$(wc -l $tmp | awk -F ' ' '{print $1}')
+    new_num_lines=$(echo $(($num_lines-1)))
+    cat $tmp | head -n $new_num_lines > $new
     rm $original
     mv $new $original
 

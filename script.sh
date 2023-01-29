@@ -12,7 +12,7 @@ for file in $(ls /Users/kareem/Documents/test/*docx); do
     perl -pi -e 's/> \n/>/g' $tmp && perl -pi -e 's/>\n/>/g' $tmp
     perl -pi -e 's/–/-/g' $tmp
     perl -pi -e 's/\xE2\x80\xA8//g' $tmp
-    # perl -pi -e 's/\.$//g' $tmp
+    perl -pi -e 's/[sudo]//g' $tmp
     cat $tmp | grep -e ']\$' -e ']#' -e 'Password:' -e 'password for' | awk -F ']|:' '{print $2}' | grep -v ^$ > $new
     perl -pi -e 's/^ //g' $new
     perl -pi -e 's/^\$//g' $new

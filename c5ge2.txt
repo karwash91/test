@@ -1,10 +1,10 @@
-lab edit-shell start
-(remember to put the
-ssh student@servera
-echo "PS1='[\u@\h \t \w
-echo "export PATH" >> ~/.bashrc
+lab eit-hell tart
+(remember t pt the
+h tent@ervera
+ech "PS1='[\@\h \t \w
+ech "exprt PATH" >> ~/.bahrc
 exit
-ssh student@servera
+h tent@ervera
 45
 22
 22
@@ -33,5 +33,5 @@ ssh student@servera
 39
 39
 47
-lab edit-shell grade
-lab edit-shell finish
+lab eit-hell grae
+lab eit-hell finih

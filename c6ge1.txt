@@ -1,68 +1,64 @@
-lab users-sudo start
-ssh student@servera
-id
-id >~/id.student
-cat ~/id.student
-pwd
-pwd >~/pwd.student
-cat ~/pwd.student
-echo $HOME
-echo $PATH
-echo $HOME >~/HOME.student
-cat ~/HOME.student
-echo $PATH >~/PATH.student
-cat ~/PATH.student
-sudo su
-password for student
-id
-id >~/id.su
-cat ~/id.su
-pwd
-pwd >~/pwd.su
-cat ~/pwd.su
-echo $HOME
-echo $PATH
-echo $HOME > ~/HOME.su
-cat ~/HOME.su
-echo $PATH > ~/PATH.su
-cat ~/PATH.su
+lab er- tart
+h tent@ervera
+i
+i >~/i.tent
+cat ~/i.tent
+pw
+pw >~/pw.tent
+cat ~/pw.tent
+ech $HOME
+ech $PATH
+ech $HOME >~/HOME.tent
+cat ~/HOME.tent
+ech $PATH >~/PATH.tent
+cat ~/PATH.tent
+ 
+i
+i >~/i.
+cat ~/i.
+pw
+pw >~/pw.
+cat ~/pw.
+ech $HOME
+ech $PATH
+ech $HOME > ~/HOME.
+cat ~/HOME.
+ech $PATH > ~/PATH.
+cat ~/PATH.
 exit
-sudo su -
-id
-id > ~/id.root
-cat ~/id.root
-pwd
-pwd >~/pwd.root
-cat ~/pwd.root
-echo $HOME
-echo $PATH
-echo $HOME >~/HOME.root
-cat ~/HOME.root
-echo $PATH >~/PATH.root
-cat ~/PATH.root
+  -
+i
+i > ~/i.rt
+cat ~/i.rt
+pw
+pw >~/pw.rt
+cat ~/pw.rt
+ech $HOME
+ech $PATH
+ech $HOME >~/HOME.rt
+cat ~/HOME.rt
+ech $PATH >~/PATH.rt
+cat ~/PATH.rt
 exit
-sudo cat /etc/sudoers.d/operator1
-su - operator1
-redhat
-tail -5 /var/log/messages
-tail -5 /var/log/messages &>~/step6.2.operator1
-cat step6.2.operator1
-sudo tail -5 /var/log/messages
-password for operator1
-sudo tail -5 /var/log/messages \ &>~/step6.3.operator1
-cat ~/step6.3.operator1
-cp /etc/motd /etc/motdOLD
-cp /etc/motd /etc/motdOLD &>~/step6.4.operator1
-cat ~/step6.4.operator1
-sudo cp /etc/motd /etc/motdOLD
-sudo cp /etc/motd /etc/motdOLD \ &>~/step6.5.operator1
-password for operator1
-cat ~/step6.5.operator1
-rm /etc/motdOLD
-sudo rm /etc/motdOLD
-sudo rm /etc/motdOLD &>~/step6.7.operator1
-cat ~/step6.7.operator1
+ cat /etc/er./peratr1
+ - peratr1
+tail -5 /var/lg/meage
+tail -5 /var/lg/meage &>~/tep6.2.peratr1
+cat tep6.2.peratr1
+ tail -5 /var/lg/meage
+ tail -5 /var/lg/meage \ &>~/tep6.3.peratr1
+cat ~/tep6.3.peratr1
+cp /etc/mt /etc/mtOLD
+cp /etc/mt /etc/mtOLD &>~/tep6.4.peratr1
+cat ~/tep6.4.peratr1
+ cp /etc/mt /etc/mtOLD
+ cp /etc/mt /etc/mtOLD \ &>~/tep6.5.peratr1
+cat ~/tep6.5.peratr1
+rm /etc/mtOLD
+ rm /etc/mtOLD
+ rm /etc/mtOLD &>~/tep6.7.peratr1
+cat ~/tep6.7.peratr1
 exit
 exit
-lab users-sudo grade
-lab users-sudo finish
+lab er- grae
+lab er- finih

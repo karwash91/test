@@ -1,5 +1,5 @@
-lab edit-vim start
-ssh student@servera
-vimtutor
-lab edit-vim grade
-lab edit-vim finish
+lab eit-vim tart
+h tent@ervera
+vimttr
+lab eit-vim grae
+lab eit-vim finih

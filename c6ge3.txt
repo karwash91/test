@@ -1,29 +1,27 @@
-lab users-group-manage start
-ssh student@servera
-sudo su -
-password for student
-groupadd -g 30000 operators
-groupadd admin
-tail /etc/group
-usermod -aG operators operator1
-usermod -aG operators operator2
-usermod -aG operators operator3
-id operator1
-id operator2
-id operator3
-usermod -aG admin sysadmin1
-usermod -aG admin sysadmin2
-usermod -aG admin sysadmin3
-id sysadmin1
-id sysadmin2
-id sysadmin3
-tail /etc/group
-echo "%admin ALL=(ALL) ALL" >> /etc/sudoers.d/admin
-su - sysadmin1
-sudo cat /etc/sudoers.d/admin
-password for sysadmin1
+lab er-grp-manage tart
+h tent@ervera
+  -
+grpa -g 30000 peratr
+grpa amin
+tail /etc/grp
+erm -aG peratr peratr1
+erm -aG peratr peratr2
+erm -aG peratr peratr3
+i peratr1
+i peratr2
+i peratr3
+erm -aG amin yamin1
+erm -aG amin yamin2
+erm -aG amin yamin3
+i yamin1
+i yamin2
+i yamin3
+tail /etc/grp
+ech "%amin ALL=(ALL) ALL" >> /etc/er./amin
+ - yamin1
+ cat /etc/er./amin
 exit
 exit
 exit
-lab users-group-manage grade
-lab users-group-manage finish
+lab er-grp-manage grae
+lab er-grp-manage finih

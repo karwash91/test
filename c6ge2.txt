@@ -1,20 +1,19 @@
-lab users-manage start
-ssh student@servera
-sudo su -
-password for student
-useradd operator1
-tail /etc/passwd
-passwd operator1
-useradd operator2
-passwd operator2
-useradd operator3
-passwd operator3
-usermod -c "Operator One" operator1
-usermod -c "Operator Two" operator2
-tail /etc/passwd
-userdel -r operator3
-tail /etc/passwd
+lab er-manage tart
+h tent@ervera
+  -
+era peratr1
+tail /etc/paw
+paw peratr1
+era peratr2
+paw peratr2
+era peratr3
+paw peratr3
+erm -c "Operatr One" peratr1
+erm -c "Operatr Tw" peratr2
+tail /etc/paw
+erel -r peratr3
+tail /etc/paw
 exit
 exit
-lab users-manage grade
-lab users-manage finish
+lab er-manage grae
+lab er-manage finih

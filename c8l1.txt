@@ -2,6 +2,15 @@ lab processes-review start
 ssh student@serverb
 mkdir /home/student/bin
 vim /home/student/bin/process101
+#!/bin/bash
+while true; do
+  var=1
+  while [[ var -lt 50000 ]]; do
+    var=$(($var+1))
+  done
+  sleep 1
+done
+
 chmod +x /home/student/bin/process101
 top
 grep "model name" /proc/cpuinfo | wc -l

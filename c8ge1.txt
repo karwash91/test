@@ -2,6 +2,11 @@ lab processes-control start
 ssh student@servera 
 mkdir /home/student/bin
 vim /home/student/bin/control 
+#!/bin/bash 
+while true; do  
+echo -n "$@ " >> ~/control_outfile
+sleep 1 
+done 
 chmod +x /home/student/bin/control
 control technical 
 tail -f ~/control_outfile 

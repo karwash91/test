@@ -1,0 +1,26 @@
+lab processes-control start
+ssh student@servera 
+mkdir /home/student/bin
+vim /home/student/bin/control 
+chmod +x /home/student/bin/control
+control technical 
+tail -f ~/control_outfile 
+jobs 
+bg 
+jobs 
+control documents & 
+control database & 
+jobs 
+fg %1 
+jobs 
+fg %2 
+jobs 
+ps jT 
+jobs 
+fg %3 
+jobs 
+rm ~/control_outfile
+exit 
+exit 
+lab processes-control grade
+lab processes-control finish

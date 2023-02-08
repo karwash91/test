@@ -26,12 +26,6 @@ su - student
 umask
 exit
 cat /etc/profile.d/local-umask.sh
-# Overrides default umask configuration
-if [ $UID -gt 199 ] && [ "`id -gn`" = "`id -un`" ]; then
-    umask 007
-else
-    umask 022
-fi
 exit
 exit
 ssh student@serverb

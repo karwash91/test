@@ -2,6 +2,11 @@ lab processes-kill start
 ssh student@servera 
 mkdir /home/student/bin
 vim /home/student/bin/killing 
+#!/bin/bash 
+while true; do  
+echo -n "$@ " >> ~/killing_outfile 
+sleep 5 
+done
 chmod +x /home/student/bin/killing
 cd /home/student/bin 
 killing network & 

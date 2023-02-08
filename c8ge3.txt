@@ -1,0 +1,20 @@
+lab processes-monitor start
+ssh student@servera 
+mkdir /home/student/bin
+vim /home/student/bin/monitor 
+chmod a+x /home/student/bin/monitor
+top 
+lscpu 
+monitor & 
+top 
+monitor & 
+top 
+monitor &
+top 
+monitor & 
+monitor & 
+monitor & 
+exit 
+exit 
+lab processes-monitor grade
+lab processes-monitor finish

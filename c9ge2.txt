@@ -1,0 +1,31 @@
+lab services-control start
+ssh student@servera
+systemctl status sshd
+ps -ef | grep sshd | awk -F '{print $1}'
+echo “pid” > /home/student/pid.txt
+cat /home/student/pid.txt
+sudo systemctl restart sshd
+student
+systemctl status sshd
+ps -ef | grep sshd | awk -F '{print $1}'
+echo “pid” > /home/student/pid-new.txt
+cat /home/student/pid-new.txt
+sudo systemctl reload sshd
+systemctl status sshd
+systemctl status chronyd
+sudo systemctl stop chronyd
+systemctl status chronyd
+systemctl is-enabled chronyd
+sudo systemctl reboot
+ssh student@servera
+systemctl status chronyd
+sudo systemctl disable chronyd
+student
+systemctl status chronyd
+sudo systemctl reboot
+ssh student@servera
+systemctl status chronyd
+exit
+exit
+lab services-control grade
+lab services-control finish

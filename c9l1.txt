@@ -1,0 +1,17 @@
+lab services-review start
+ssh student@serverb
+systemctl status psacct
+sudo systemctl start psacct
+student
+systemctl is-active psacct
+sudo systemctl enable psacct
+systemctl is-enabled psacct
+systemctl status rsyslog
+sudo systemctl stop rsyslog
+student
+systemctl is-active rsyslog
+sudo systemctl disable rsyslog
+systemctl is-enabled rsyslog
+sudo systemctl reboot
+lab services-review grade
+lab services-review finish

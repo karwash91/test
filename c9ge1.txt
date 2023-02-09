@@ -1,0 +1,20 @@
+lab services-identify start
+ssh student@servera
+systemctl list-units --type=service
+systemctl list-units --type=socket --all
+systemctl status chronyd
+ps -p 680
+echo “pid” > /home/student/pid.txt
+cat /home/student/pid.txt
+systemctl is-enabled sshd
+systemctl is-active sshd
+systemctl status sshd
+echo “answer” > /home/student/active.txt
+cat /home/student/active.txt
+systemctl list-unit-files --type=service
+echo “answer” > /home/student/enabled.txt
+cat /home/student/enabled.txt
+exit
+exit
+lab services-identify grade
+lab services-identify finish

@@ -1,3 +1,24 @@
 lab ssh-review start
+ssh student@servera
+su - production1
+redhat
+ssh-keygen
+ssh-copy-id production1@serverb
+ssh production1@serverb
+su -
+redhat
+systemctl reload sshd.service
+ssh production1@servera
+ssh root@serverb
+systemctl reload sshd
+ssh production2@serverb
+ssh production1@serverb
+exit
+exit
+exit
+exit
+exit
+exit
+exit
 lab ssh-review grade
 lab ssh-review finish

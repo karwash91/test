@@ -1,0 +1,25 @@
+lab ssh-configure start
+ssh student@serverb
+su - operator1
+redhat
+ssh-keygen
+ssh-copy-id operator1@servera
+ssh operator1@servera hostname
+ssh-keygen -f .ssh/key2
+ssh-copy-id -i .ssh/key2.pub operator1@servera
+ssh -i .ssh/key2 operator1@servera hostname
+eval $(ssh-agent)
+ssh-add .ssh/key2
+ssh -i .ssh/key2 operator1@servera hostname
+ssh student@serverb
+su - operator1
+redhat
+ssh -i .ssh/key2 operator1@servera
+exit
+exit
+exit
+exit
+exit
+exit
+lab ssh-configure grade
+lab ssh-configure finish

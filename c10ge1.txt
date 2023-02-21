@@ -1,0 +1,21 @@
+lab ssh-access start
+ssh student@servera
+ssh student@serverb
+w
+w > ~/step_3.txt
+cat ~/step_3.txt
+exit
+ssh root@serverb
+w
+w > ~/step_6.txt
+cat ~/step_6.txt
+exit
+rm /home/student/.ssh/known_hosts
+ssh student@serverb
+exit
+ls -l /home/student/.ssh/known_hosts
+cat /home/student/.ssh/known_hosts
+ssh student@serverb hostname
+exit
+lab ssh-access grade
+lab ssh-access finish

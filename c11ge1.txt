@@ -1,0 +1,11 @@
+lab log-configure start
+ssh student@servera 
+sudo -i 
+student 
+systemctl restart rsyslog
+logger -p user.debug "Debug Message Test"
+tail /var/log/messages-debug 
+exit 
+exit 
+lab log-configure grade
+lab log-configure finish

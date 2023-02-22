@@ -1,0 +1,12 @@
+lab log-maintain start
+ssh student@servera 
+tzselect 
+sudo timedatectl set-timezone America/Port-au-Prince 
+student
+timedatectl
+sudo timedatectl set-ntp yes
+timedatectl
+chronyc sources -v 
+exit 
+lab log-maintain grade
+lab log-maintain finish

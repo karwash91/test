@@ -1,0 +1,13 @@
+lab log-preserve start
+ssh student@servera 
+sudo ls /var/log/journal 
+student 
+sudo systemctl restart systemd-journald.service
+sudo systemctl reboot 
+ssh student@servera 
+sudo ls /var/log/journal 
+student
+sudo ls /var/log/journal/73ab164e278e48be9bf80e80714a8cd5 
+exit 
+lab log-preserve grade
+lab log-preserve finish

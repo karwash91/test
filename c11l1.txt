@@ -1,0 +1,15 @@
+lab log-review start
+ssh student@serverb
+timedatectl list-timezones | grep Jamaica
+sudo timedatectl set-timezone America/Jamaica
+student
+timedatectl
+date
+date -d "-30 minutes"
+journalctl --since 07
+sudo systemctl restart rsyslog
+logger -p authpriv.alert "Logging test authpriv.alert"
+sudo tail /var/log/auth-errors
+exit
+lab log-review grade
+lab log-review finish

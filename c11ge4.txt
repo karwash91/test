@@ -10,3 +10,7 @@ chronyc sources -v
 exit 
 lab log-maintain grade
 lab log-maintain finish
+
+172.25.254.254 classroom.example.com classroom class
+172.25.254.254 content.example.com content
+

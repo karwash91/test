@@ -1,0 +1,23 @@
+lab net-hostnames start
+ssh student@servera
+hostname
+hostnamectl status
+sudo hostnamectl set-hostname \ servera.lab.example.com
+student
+cat /etc/hostname
+hostnamectl status
+sudo hostname testname
+hostname testname
+cat /etc/hostname
+sudo systemctl reboot
+ssh student@servera
+hostname
+host classroom.example.com
+sudo vim /etc/hosts
+cat /etc/hosts
+host class
+getent hosts class
+ping -c3 class
+exit
+lab net-hostnames grade
+lab net-hostnames finish

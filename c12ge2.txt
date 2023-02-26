@@ -1,0 +1,25 @@
+lab net-configure start
+ssh student@servera
+ip link
+nmcli con show
+nmcli con show --active
+nmcli con show "Wired connection 1"
+nmcli dev status
+nmcli dev show enX
+sudo nmcli con add con-name "static-addr" ifname enX type ethernet ipv4.method manual ipv4.address \ 172.25.250.10/24 ipv4.gateway 172.25.250.254
+sudo nmcli con mod "static-addr" ipv4.dns
+nmcli con show
+nmcli con show --active
+sudo nmcli con up "static-addr"
+nmcli con show --active
+sudo nmcli con mod "Wired connection 1" connection.autoconnect no
+sudo systemctl reboot
+ssh student@servera
+nmcli con show --active
+ip addr show enX
+ip route
+ping -c3 172.25.250.254
+exit
+exit
+lab net-configure grade
+lab net-configure finish

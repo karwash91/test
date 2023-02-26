@@ -1,0 +1,19 @@
+lab net-validate start
+ssh student@servera
+ip link
+ip addr
+echo “IP Address” > /home/student/step3.txt
+cat /home/student/step3.txt
+ip -s link show enX
+ip route
+echo “Default Gateway” > /home/student/step5.txt
+cat /home/student/step5.txt
+ping -c3 172.25.250.254
+tracepath classroom.example.com
+echo “Hops” > /home/student/step7.txt
+cat /home/student/step7.txt
+ss -lt
+exit
+exit
+lab net-validate grade
+lab net-validate finish

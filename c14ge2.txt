@@ -1,0 +1,26 @@
+lab software-yum start
+ssh student@servera
+su -
+redhat
+guile
+yum search guile
+yum info guile
+yum install guile
+yum remove guile
+echo # > /root/guile.txt
+cat /root/guile.txt
+yum remove gc
+echo # > /root/gc.txt
+cat /root/gc.txt
+yum group list
+yum group info "RPM Development Tools"
+yum group install "RPM Development Tools"
+yum history
+yum history info 6
+echo # > /root/history.txt
+cat /root/history.txt
+yum history undo 5
+exit
+exit
+lab software-yum grade
+lab software-yum finish

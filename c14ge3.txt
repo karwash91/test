@@ -2,7 +2,8 @@ lab software-repo start
 ssh student@servera
 su -
 redhat
-yum-config-manager --add-repo "http
+yum-config-manager --add-repo "http://content.example.com/rhel8.0/x86_64/rhcsa-practice/
+rht"
 vim /etc/yum.repos.d/content.example.com_rhel8.0_x86_64_rhcsa-practice_rht.repo gpgcheck=0
 yum repolist all
 yum-config-manager --disable rht-updates

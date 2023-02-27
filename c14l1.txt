@@ -4,14 +4,11 @@ su -
 redhat
  
  /etc/yum.repos.d/errata.repo
-[errata]
+[errata
 name=Red Hat Updates
-baseurl=http://content.example.com/rhel8.0/x86_64/rhcsa-practice/errata
+baseurl=http
 enabled=1
 gpgcheck=0
-yum list xsane-gimp
-yum install xsane-gimp -y
-yum module install httpd:2.4/common -y
 yum list cups
 yum remove cups.x86_64 -y
 exit

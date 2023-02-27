@@ -1,7 +1,7 @@
 lab archive-transfer start
 ssh student@servera
 mkdir ~/serverbackup
-scp -r root@serverb
+scp -r root@serverb:/etc/ssh ~/serverbackup
 ls -lR ~/serverbackup
 exit
 lab archive-transfer grade

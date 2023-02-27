@@ -10,6 +10,3 @@ chronyc sources -v
 exit 
 lab log-maintain grade
 lab log-maintain finish
-
-curl http://classroom.example.com/cgi-bin/grades/showmemygrades.cgi
-

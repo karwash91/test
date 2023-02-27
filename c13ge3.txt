@@ -1,10 +1,10 @@
 lab archive-sync start
 ssh student@servera
 mkdir ~/serverlogs
-rsync -av root@serverb
+rsync -av root@serverb:/var/log ~/serverlogs
 ssh root@serverb 'logger "Log files synchronized"'
 redhat
-rsync -av root@serverb
+rsync -av root@serverb:/var/log ~/serverlogs
 exit
 lab archive-sync grade
 lab archive-sync finish

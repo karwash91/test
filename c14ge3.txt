@@ -2,8 +2,7 @@ lab software-repo start
 ssh student@servera
 su -
 redhat
-yum-config-manager --add-repo "http://content.example.com/rhel8.0/x86_64/rhcsa-practice/
-rht"
+yum-config-manager --add-repo "http
 vim /etc/yum.repos.d/content.example.com_rhel8.0_x86_64_rhcsa-practice_rht.repo gpgcheck=0
 yum repolist all
 yum-config-manager --disable rht-updates
@@ -21,15 +20,3 @@ exit
 exit
 lab software-repo grade
 lab software-repo finish
-
-
-
-/etc/yum.repos.d/errata.repo 
-
-
-[rht-updates]
-name=rht updates
-baseurl=http://content.example.com/rhel8.0/x86_64/rhcsa-practice/
-errata
-enabled=1
-gpgcheck=0

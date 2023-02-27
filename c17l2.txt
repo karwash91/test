@@ -1,0 +1,25 @@
+lab rhcsa-rh124-review2 start
+ssh student@serverb
+top
+sudo su -
+student
+groupadd -g 50000 database
+useradd -G database dbuser1
+passwd dbuser1
+redhat
+chage -d 0 dbuser1
+chage -m 10 dbuser1
+chage -M 30 dbuser1
+su - dbuser1
+echo "umask 007" >> .bash_profile
+echo "umask 007" >> .bashrc
+exit
+mkdir /home/student/grading/review2
+chown student
+chmod g+s /home/student/grading/review2
+chmod 775 /home/student/grading/review2
+chmod o+t /home/student/grading/review2
+exit
+exit
+lab rhcsa-rh124-review2 grade
+lab rhcsa-rh124-review2 finish

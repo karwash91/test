@@ -1,0 +1,27 @@
+lab fs-locate start
+ssh student@servera
+sudo updatedb
+student
+locate logrotate.conf
+echo “/path/to/file” > /home/student/logrotate.txt
+cat /home/student/logrotate.txt
+locate -i networkmanager.conf
+echo “/path/to/file” > /home/student/netman.txt
+cat /home/student/netman.txt
+sudo find /var/lib -user chrony
+student
+echo “/path/to/file” > /home/student/drift.txt
+cat /home/student/drift.txt
+sudo find /var -user root -group mail
+find /usr/bin -size +50k
+find /usr/bin -size +50k | wc -l
+find /usr/bin -size +50k | wc -l > /home/student/count.txt
+cat /home/student/count.txt
+find /home/student -mmin +120
+find /dev -type b
+find /dev -type b > /home/student/block.txt
+cat /home/student/block.txt
+exit
+exit
+lab fs-locate grade
+lab fs-locate finish

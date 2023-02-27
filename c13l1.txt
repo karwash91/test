@@ -1,0 +1,19 @@
+lab archive-review start
+ssh student@serverb
+su -
+redhat
+mkdir /configsync
+rsync -av root@servera./etc /configsync
+tar -czf configfile-backup-servera.tar.gz /configsync
+tar -tzf configfile-backup-servera.tar.gz
+scp ~/configfile-backup-servera.tar.gz student@workstation./home/student
+exit
+exit
+mkdir /tmp/savedconfig
+cd /tmp/savedconfig
+tar -tzf ~/configfile-backup-servera.tar.gz
+tar -xzf ~/configfile-backup-servera.tar.gz
+ls -lR
+cd
+lab archive-review grade
+lab archive-review finish

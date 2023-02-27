@@ -1,0 +1,14 @@
+lab software-rpm start
+ssh student@servera
+rpm -q -p rhcsa-script-1.0.0-1.noarch.rpm -i
+rpm -q -p rhcsa-script-1.0.0-1.noarch.rpm -l /opt/rhcsa-script/mymotd
+rpm -q -p rhcsa-script-1.0.0-1.noarch.rpm -scripts preinstall scriptlet (using /bin/sh)
+rpm2cpio rhcsa-script-1.0.0-1.noarch.rpm | cpio -tv
+rpm2cpio rhcsa-script-1.0.0-1.noarch.rpm | cpio -idv
+ls -lR opt
+sudo rpm -ivh rhcsa-script-1.0.0-1.noarch.rpm
+student
+rpm -q rhcsa-script
+exit
+lab software-rpm grade
+lab software-rpm finish

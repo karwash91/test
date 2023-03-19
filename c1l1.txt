@@ -1,0 +1,16 @@
+lab console-review start
+mkdir -p /home/student/bin
+ vim ~/bin/bash-lab
+chmod a+x ~/bin/bash-lab
+vim ~/bin/bash-lab
+bash-lab
+cat /home/student/output-servera
+30
+30
+30
+cat /home/student/output-serverb
+30
+30
+30
+lab console-review grade
+lab console-review finish

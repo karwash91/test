@@ -1,8 +1,0 @@
-lab archive-transfer start
-ssh student@servera
-mkdir ~/serverbackup
-scp -r root@serverb
-ls -lR ~/serverbackup
-exit
-lab archive-transfer grade
-lab archive-transfer finish

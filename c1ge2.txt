@@ -1,0 +1,13 @@
+lab console-commands start
+ssh student@servera hostname
+ssh student@serverb hostname
+for HOST in servera serverb
+mkdir ~/bin
+echo $PATH
+vim ~/bin/printhostname.sh
+cat ~/bin/printhostname.sh
+chmod +x ~/bin/printhostname.sh
+printhostname.sh
+echo $?
+lab console-commands grade
+lab console-commands finish

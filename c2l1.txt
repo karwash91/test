@@ -1,26 +1,49 @@
 lab scheduling-review start
-ssh student@servera...output omitted...[student@servera ~
+ssh student@servera
 crontab -e
-installing new crontab[student@servera ~
-crontab -l*/2 08-20 * * * /usr/bin/date >> /home/student/my_first_cron_job.txt
+*/2 08-20 * * Mon-Fri /usr/bin/date >> /home/student/my_first_cron_job.txt
+
+crontab -l
 while ! test -f my_first_cron_job.txt; do sleep 1s; done
 cat my_first_cron_job.txt
 sudo -i
 student
+vim /etc/cron.daily/usercount
+!/bin/bash
+USERCOUNT=$(w -h | wc -l)
+logger "There are currently ${USERCOUNT} active users"
+
 chmod +x /etc/cron.daily/usercount
-yum install sysstat
+yum install sysstat -y
 cp /usr/lib/systemd/system/sysstat-collect.timer /etc/systemd/system/sysstat-collect.timer
+vim /etc/systemd/system/sysstat-collect.timer
+# Activates activity collector every 2 minutes
+[Unit]
+Description=Run system activity accounting tool every 2 minutes
+
+[Timer]
+OnCalendar=*:00/02
+
+[Install]
+WantedBy=sysstat.service
+
 cat /etc/systemd/system/sysstatcollect.timer
 systemctl daemon-reload
 systemctl enable --now sysstat-collect.timer
-while [ $(ls /var/log/sa | wc -l) -eq 0 
+while [ $(ls /var/log/sa | wc -l) -eq 0 ]; do sleep 1s; done
 ls -l /var/log/sa
 date
 cp /usr/lib/tmpfiles.d/tmp.conf /etc/tmpfiles.d/tmp.conf
+vim /etc/tmpfiles.d/tmp.conf 
+q /tmp 1777 root root 5d
+
 systemd-tmpfiles --clean /etc/tmpfiles.d/tmp.conf
 cat /etc/tmpfiles.d/momentary.conf
+vim /etc/tmpfiles.d/momentary.conf
+d /run/momentary 0700 root root 30s
 systemd-tmpfiles --create /etc/tmpfiles.d/momentary.conf
-ls -ld /run/momentarydrwx------. 2 root root 40 Mar 21 16
+
+ls -ld /run/momentary
 touch /run/momentary/testfile
 sleep 30
 systemd-tmpfiles --clean /etc/tmpfiles.d/momentary.conf

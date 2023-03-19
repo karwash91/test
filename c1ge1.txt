@@ -1,0 +1,11 @@
+lab console-write start
+ssh student@servera
+vim firstscript.sh
+sh firstscript.sh
+cat output.txt
+vim firstscript.sh
+chmod a+x firstscript.sh
+./firstscript.sh
+cat output.txt
+lab console-write grade
+lab console-write finish

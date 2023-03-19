@@ -1,0 +1,25 @@
+lab console-regex start
+ssh student@servera
+sudo -i
+student
+date
+grep '^Mar 22 08
+echo UID > /root/step3.txt
+cat /root/step3.txt
+grep 'postfix' /var/log/maillog | head -n 2
+grep ‘postfix’ /var/log/maillog | head -n 2 > /root/step4.txt
+cat /root/step4.txt
+grep -i 'queue' /etc/postfix/main.cf
+echo “/queue” > /root/step5.txt
+cat /root/step5.txt
+less /var/log/messages
+ps aux | grep postfix
+echo 3881 > /root/step7.txt
+cat /root/step7.txt
+grep -e qmgr -e pickup -e cleanup /etc/postfix/master.cf
+grep -e gmgr -e pickup -e cleanup /etc/postfix/master.cf > /root/step8.txt
+cat /root/step8.txt
+exit
+exit
+lab console-regex grade
+lab console-regex finish

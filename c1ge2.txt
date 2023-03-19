@@ -1,10 +1,18 @@
 lab console-commands start
 ssh student@servera hostname
 ssh student@serverb hostname
-for HOST in servera serverb
+for HOST in servera serverb; do; ssh student@${HOST} hostname; done
 mkdir ~/bin
 echo $PATH
 vim ~/bin/printhostname.sh
+#!/bin/bash
+#Execute for loop to print server hostname.
+for HOST in servera serverb
+do
+ssh student@${HOST} hostname
+done
+exit 0
+
 cat ~/bin/printhostname.sh
 chmod +x ~/bin/printhostname.sh
 printhostname.sh

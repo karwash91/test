@@ -3,14 +3,14 @@ ssh student@servera
 sudo -i
 student
 date
-grep '^Mar 22 08
+grep '^Mar 22 08:2.*GID' /var/log/secure
 echo UID > /root/step3.txt
 cat /root/step3.txt
 grep 'postfix' /var/log/maillog | head -n 2
-grep ‘postfix’ /var/log/maillog | head -n 2 > /root/step4.txt
+grep 'postfix' /var/log/maillog | head -n 2 > /root/step4.txt
 cat /root/step4.txt
 grep -i 'queue' /etc/postfix/main.cf
-echo “/queue” > /root/step5.txt
+echo "/queue" > /root/step5.txt
 cat /root/step5.txt
 less /var/log/messages
 ps aux | grep postfix

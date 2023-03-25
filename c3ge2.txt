@@ -1,0 +1,10 @@
+lab tuning-profiles start
+ssh student@servera
+yum list tuned
+systemctl is-enabled tuned; systemctl is-active tuned
+sudo tuned-adm list
+student
+sudo tuned-adm profile powersave
+sudo tuned-adm active
+exit
+lab tuning-profiles finish

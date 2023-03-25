@@ -1,0 +1,24 @@
+lab tuning-procscheduling start
+ssh student@servera
+grep -c '^processor' /proc/cpuinfo 
+for i in $(seq 1 4); do sha1sum /dev/zero & done
+jobs
+jobs > ~/step3.1.txt
+cat ~/3.1.txt
+ps u $(pgrep sha1sum)
+ps u $(pgrep sha1sum) > ~/step4.1.txt
+cat ~/step4.1.txt
+pkill sha1sum
+jobs
+for i in $(seq 1 3); do sha1sum /dev/zero & done
+nice -n 10 sha1sum /dev/zero &
+ps -o pid,pcpu,nice,comm $(pgrep sha1sum)
+ps -o pid,pcpu,nice,comm $(pgrep sha1sum) > ~/step7.1.txt
+cat ~/step7.1.txt
+sudo renice -n 5 1953
+student
+ps -o pid,pcpu,nice,comm $(pgrep sha1sum)
+ps -o pid,pcpu,nice,comm $(pgrep sha1sum) > ~/step9.1.txt
+exit
+lab tuning-procscheduling grade
+lab tuning-procscheduling finish

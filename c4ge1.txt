@@ -1,0 +1,31 @@
+lab acl-secure start
+ssh student@servera
+sudo -i
+student
+setfacl -Rm g
+setfacl -Rm u
+setfacl -m d
+setfacl -m d
+exit
+su - consultant2
+redhat
+cd /shares/content/
+cat serverb-loadavg.txt
+./loadavg.sh
+mkdir reports
+echo "TEST REPORT" > reports/test.txt
+exit
+su - consultant1
+redhat
+cd /shares/content/
+ls /shares/content/
+cat /shares/content/serverb-loadavg.txt
+exit
+su - sysadmin1
+redhat
+getfacl /shares/content
+getfacl /shares/content/reports
+exit
+exit
+lab acl-secure grade
+lab acl-secure finish

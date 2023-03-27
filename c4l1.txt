@@ -1,0 +1,49 @@
+lab acl-review start
+ssh student@serverb
+sudo -i
+student
+chgrp -R managers /shares/cases
+chmod g+s /shares/cases
+chmod 660 /shares/cases/*
+setfacl -Rm g
+setfacl -Rm u
+setfacl -m d
+setfacl -m d
+ls -ld /shares/cases
+ls -l /shares/cases
+getfacl /shares/cases
+exit
+su - manager1
+redhat
+cd /shares/cases
+echo hello > manager1.txt
+cat shortlist.txt
+mkdir manager1.dir
+echo hello > manager1.dir/test.txt
+ls -ld manager1.dir
+ls -l manager1.dir
+getfacl manager1.dir
+exit
+su - contractor1
+redhat
+cd /shares/cases
+echo hello > manager1.txt
+cat shortlist.txt
+mkdir contractor1.dir
+echo hello > contractor1.dir/test.txt
+ls -ld contractor1.dir
+ls -l contractor1.dir
+getfacl contractor1.dir
+exit
+su - contractor3
+redhat
+cd /shares/cases
+echo hello > contractor3.txt
+cat shortlist.txt
+mkdir contractor3.dir
+cat manager1.dir/test.txt
+cat contractor1.dir/test.txt
+exit
+exit
+lab acl-review grade
+lab acl-review finish

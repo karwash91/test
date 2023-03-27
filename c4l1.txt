@@ -5,10 +5,10 @@ student
 chgrp -R managers /shares/cases
 chmod g+s /shares/cases
 chmod 660 /shares/cases/*
-setfacl -Rm g
-setfacl -Rm u
-setfacl -m d
-setfacl -m d
+setfacl -Rm g:contractors:rwX /shares/cases
+setfacl -Rm u:contractor3:rX /shares/cases
+setfacl -m d:g:contractors:rwx /shares/cases
+setfacl -m d:u:contractor3:rx /shares/cases
 ls -ld /shares/cases
 ls -l /shares/cases
 getfacl /shares/cases

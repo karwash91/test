@@ -2,10 +2,7 @@ lab acl-secure start
 ssh student@servera
 sudo -i
 student
-setfacl -Rm g
-setfacl -Rm u
-setfacl -m d
-setfacl -m d
+setfacl -Rm g:consultants:rwX /shares/content && setfacl -Rm u:consultant1:- /shares/content  && setfacl -m d:g:consultants:rwx /shares/content && setfacl -m d:u:consultant1:- /shares/content
 exit
 su - consultant2
 redhat

@@ -1,0 +1,17 @@
+lab selinux-filecontexts start
+ssh student@servera 
+ 
+sudo -i 
+student 
+mkdir /custom
+echo 'This is SERVERA.' > /custom/index.html
+vim /etc/httpd/conf/httpd.conf replace the two occurrences of /var/www/html with /custom in
+grep custom /etc/httpd/conf/httpd.conf 
+systemctl enable --now httpd
+systemctl status httpd 
+semanage fcontext -a -t httpd_sys_content_t \ '/custom(/.*)?'
+restorecon -Rv /custom 
+exit 
+exit 
+lab selinux-filecontexts  grade
+lab selinux-filecontexts  finish

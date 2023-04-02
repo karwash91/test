@@ -1,0 +1,15 @@
+lab selinux-review start
+ssh student@serverb
+ 
+sudo -i
+student
+less /var/log/messages
+sealert -l 8824e73d-3ab0-4caf-8258-86e8792fee2d
+ausearch -m AVC -ts recent
+ls -dZ /lab-content /var/www/html
+semanage fcontext -a -t httpd_sys_content_t '/lab-content(/.*)?'
+restorecon -R /lab-content/
+exit
+exit
+lab selinux-review grade
+lab selinux-review finish

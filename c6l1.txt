@@ -1,0 +1,35 @@
+lab storage-review start
+ssh student@serverb
+sudo -i
+student
+lsblk
+parted /dev/vdb print
+parted /dev/vdb mklabel gpt
+parted /dev/vdb mkpart backup xfs 2048s 2GB
+parted /dev/vdb print
+udevadm settle
+mkfs.xfs /dev/vdb1
+mkdir /backup
+lsblk --fs /dev/vdb1
+vim /etc/fstab
+systemctl daemon-reload
+mount /backup
+mount | grep /backup
+parted /dev/vdb print
+parted /dev/vdb mkpart swap1 linux-swap 2000MB 2512M
+parted /dev/vdb mkpart swap2 linux-swap 2512M 3024M
+parted /dev/vdb print
+udevadm settle
+mkswap /dev/vdb2
+mkswap /dev/vdb3
+vim /etc/fstab
+systemctl daemon-reload
+swapon -a
+swapon --show
+systemctl reboot
+ssh student@serverb
+mount | grep /backup
+swapon --show
+exit
+lab storage-review grade
+lab storage-review finish

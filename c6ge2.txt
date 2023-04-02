@@ -1,0 +1,30 @@
+lab storage-partitions start
+ssh student@servera
+sudo -i
+student
+parted /dev/vdb mklabel msdos
+parted /dev/vdb
+parted /dev/vdb print
+parted /dev/vdb print > ~/step4.2.txt
+cat ~/step4.2.txt
+udevadm settle
+mkfs.xfs /dev/vdb1
+mkdir /archive
+lsblk --fs /dev/vdb
+vim /etc/fstab In the following command, replace the UUID with the
+systemctl daemon-reload
+mount /archive
+mount | grep /archive
+mount | grep /archive > ~/step6.6.txt
+cat ~/step6.6.txt
+systemctl reboot
+ssh student@servera
+sudo -I
+student
+mount | grep /archive
+mount | grep /archive > ~/step7.3.txt
+cat ~/step7.3.txt
+exit
+exit
+lab storage-partitions grade
+lab storage-partitions finish

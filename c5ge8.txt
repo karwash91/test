@@ -1,0 +1,14 @@
+lab selinux-issues start
+ssh student@servera 
+ 
+sudo -i 
+student 
+less /var/log/messages 
+sealert -l b1c9cc8f-a953-4625-b79b-82c4f4f1fee3 
+ausearch -m AVC -ts recent 
+semanage fcontext -a -t httpd_sys_content_t '/custom(/.*)?' 
+restorecon -Rv /custom 
+exit 
+exit 
+lab selinux-issues grade
+lab selinux-issues finish

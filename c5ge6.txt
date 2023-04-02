@@ -1,0 +1,19 @@
+lab selinux-booleans start
+ssh student@servera 
+ 
+sudo -i 
+student 
+vim /etc/httpd/conf.d/userdir.conf Comment out the line that sets UserDir to disabled and uncomment the line that sets UserDir to public_html
+grep '#UserDir' /etc/httpd/conf.d/userdir.conf 
+grep '^ *UserDir' /etc/httpd/conf.d/userdir.conf 
+systemctl enable --now httpd
+ssh student@servera 
+mkdir ~/public_html
+echo 'This is student content on SERVERA.' > \ ~/public_html/index.html
+chmod 711 ~
+getsebool -a | grep home 
+setsebool -P httpd_enable_homedirs on
+exit 
+exit 
+lab selinux-booleans grade
+lab selinux-booleans finish

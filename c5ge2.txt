@@ -1,0 +1,22 @@
+lab selinux-opsmode start
+ssh student@servera 
+ 
+sudo -i 
+student 
+getenforce 
+vim /etc/selinux/config Change the SELINUX parameter from enforcing to permissive.
+grep '^SELINUX' /etc/selinux/config SELINUX=permissive SELINUXTYPE=targeted 
+systemctl reboot 		
+ 
+ssh student@servera
+sudo -i 
+student 
+getenforce
+vim /etc/selinux/config Change the SELINUX back to enforcing.
+grep '^SELINUX' /etc/selinux/config SELINUX=enforcing SELINUXTYPE=targeted 
+setenforce 1 
+getenforce 
+exit
+exit
+lab selinux-opsmode grade
+lab selinux-opsmode finish

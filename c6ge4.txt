@@ -1,0 +1,29 @@
+ lab storage-swap start
+ ssh student@servera
+sudo -i
+student
+parted /dev/vdb print
+parted /dev/vdb mkpart myswap linux-swap 1001MB 1501MB
+parted /dev/vdb print
+udevadm settle
+mkswap /dev/vdb2
+swapon --show
+swapon /dev/vdb2
+swapon --show
+swapon --show > ~/step6.4.txt
+cat ~/step6.4.txt
+swapoff /dev/vdb2
+swapon --show
+lsblk --fs /dev/vdb2
+vim /etc/fstab
+systemctl daemon-reload
+swapon -a
+swapon --show
+swapon --show > ~/step7.6.txt
+cat ~/step7.6.txt
+systemctl reboot
+ ssh student@servera
+swapon --show
+exit
+lab storage-swap grade
+ lab storage-swap finish

@@ -1,0 +1,29 @@
+lab lvm-creating start
+ssh student@servera
+sudo -i
+student
+parted -s /dev/vdb mklabel gpt
+parted -s /dev/vdb mkpart primary 1MiB 257MiB
+parted -s /dev/vdb set 1 lvm on
+parted -s /dev/vdb mkpart primary 258MiB 514MiB
+parted -s /dev/vdb set 2 lvm on
+udevadm settle
+pvcreate /dev/vdb1 /dev/vdb2
+vgcreate servera_01_vg /dev/vdb1 /dev/vdb2
+lvcreate -n servera_01_lv -L 400M servera_01_vg
+mkfs -t xfs /dev/servera_01_vg/servera_01_lv
+mkdir /data
+systemctl daemon-reload
+mount /data
+cp -a /etc/*.conf /data
+ls /data | wc -l
+parted /dev/vdb print
+pvdisplay /dev/vdb2
+vgdisplay servera_01_vg
+lvdisplay /dev/servera_01_vg/servera_01_lv
+mount
+df -h /data
+exit
+exit
+lab lvm-creating grade
+lab lvm-creating finish

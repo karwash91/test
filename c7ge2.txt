@@ -1,0 +1,20 @@
+lab lvm-extending start
+ssh student@servera
+sudo -i
+student
+vgdisplay servera_01_vg
+df -h /data
+parted -s /dev/vdb mkpart primary 387MiB 514MiB
+parted -s /dev/vdb set 3 lvm on
+udevadm settle
+pvcreate /dev/vdb3
+vgextend servera_01_vg /dev/vdb3
+vgdisplay servera_01_vg
+lvextend -L 500M /dev/servera_01_vg/servera_01_lv
+xfs_growfs /data
+df -h /data
+ls /data | wc -l
+exit
+exit
+lab lvm-extending grade
+lab lvm-extending finish

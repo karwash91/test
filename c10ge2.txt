@@ -1,0 +1,4 @@
+lab boot-resetting start
+redhat
+lab boot-resetting grade
+lab boot-resetting finish

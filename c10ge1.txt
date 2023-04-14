@@ -1,0 +1,14 @@
+rht-vmview view workstation
+lab boot-selecting start
+systemctl get-default 
+sudo systemctl isolate multi-user.target
+student
+redhat
+systemctl set-default multi-user.target
+systemctl reboot
+redhat
+systemctl set-default graphical.target
+systemctl reboot
+mount
+lab boot-selecting grade
+lab boot-selecting finish

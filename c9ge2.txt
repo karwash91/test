@@ -1,0 +1,29 @@
+lab netstorage-nfs start
+ssh student@servera
+sudo -i
+student
+nfsconf --set nfsd udp n
+nfsconf --set nfsd vers2 n
+nfsconf --set nfsd vers3 n
+nfsconf --set nfsd tcp y
+nfsconf --set nfsd vers4 y
+nfsconf --set nfsd vers4.0 y
+nfsconf --set nfsd vers4.1 y
+nfsconf --set nfsd vers4.2 y
+mkdir /public
+mount -t nfs serverb.lab.example.com
+ls -l /public
+mount | grep public serverb.lab.example.com
+umount /public
+echo ’serverb.lab.example.com
+mount /public
+ls -l /public
+systemctl reboot
+ssh admin1@servera
+ls -l /public
+cat /public/NOTES.txt
+echo "This is a test" > /public/Test.txt
+cat /public/Test.txt
+exit
+lab netstorage-nfs grade
+lab netstorage-nfs finish

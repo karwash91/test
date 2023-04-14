@@ -41,7 +41,3 @@ If on a reboot, serverb doesn't boot to a regular login prompt but instead has "
 mount -o remount,rw /
 lab advstorage-review grade
 lab advstorage-review finish
-
-/labvdovol xfs defaults,x-systemd.requires=vdo.service 0 0
-
-/labstratisvol  xfs defaults,x-systemd.requires=stratisd.service 0 0

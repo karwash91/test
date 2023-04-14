@@ -1,0 +1,53 @@
+lab netstorage-autofs start
+ssh student@servera
+sudo -i
+student
+yum install autofs
+mount -t nfs \ serverb.lab.example.com
+ls -l /mnt
+ls -l /mnt  > ~/step2.2.txt
+cat ~/step2.2.txt
+umount /mnt
+vim /etc/auto.master.d/direct.autofs /- /etc/auto.direct
+vim /etc/auto.direct /external -rw,sync,fstype=nfs4
+vim /etc/auto.direct serverb.lab.example.com;/shares/direct/external
+mount -t nfs serverb.lab.example.com
+ls -l /mnt
+umount /mnt
+vim /etc/auto.master.d/indirect.autofs /internal /etc/auto.indirect
+vim /etc/auto.indirect * -rw,sync,fstype=nfs4 serverb.lab.example.com;/shares/indirect/&
+systemctl enable --now autofs
+systemctl reboot
+ssh student@servera
+su - contractor1
+redhat
+echo current-active-profile > ~/active_profile.txt
+ls -l /external
+cat /external/README.txt
+echo testing-direct > /external/testing.txt
+cat /external/testing.txt
+exit
+su - operator1
+redhat
+echo current-active-profile > ~/active_profile_two.txt
+ls -l /internal
+ls -l /internal/west/
+cat /internal/west/README.txt
+echo testing-1 > /internal/west/testing-1.txt
+cat /internal/west/testing-1.txt
+ls -l /internal
+ls -l /internal/central
+cat /internal/central/README.txt
+echo testing-2 > /internal/central/testing-2.txt
+cat /internal/central/testing-2.txt
+ls -l /internal
+ls -l /internal/east
+cat /internal/east/README.txt
+echo testing-3 > /internal/east/testing-3.txt
+cat /internal/east/testing-3.txt
+ls -l /internal
+ls -l /external
+exit
+exit
+lab netstorage-autofs grade
+lab netstorage-autofs finish

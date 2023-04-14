@@ -1,0 +1,52 @@
+lab netstorage-review start
+ssh student@servera
+sudo -i
+student
+yum install autofs
+nfsconf --set nfsd udp n
+nfsconf --set nfsd vers2 n
+nfsconf --set nfsd vers3 n
+nfsconf --set nfsd tcp y
+nfsconf --set nfsd vers4 y
+nfsconf --set nfsd vers4.0 y
+nfsconf --set nfsd vers4.1 y
+nfsconf --set nfsd vers4.2 y
+mount -t nfs serverb.lab.example.com
+ls -l /mnt
+umount /mnt
+vim /etc/auto.master.d/shares.autofs
+vim /etc/auto.shares
+systemctl enable --now autofs
+systemctl reboot
+ssh student@servera
+su - manager1
+redhat
+ls -l /remote/management/
+cat /remote/management/Welcome.txt
+echo TEST1 > /remote/management/Test.txt
+cat /remote/management/Test.txt
+ls -l /remote/operation/
+ls -l /remote/production/
+exit
+su - dbuser1
+redhat
+ls -l /remote/production/
+cat /remote/production/Welcome.txt
+echo TEST2 > /remote/production/Test.txt
+cat /remote/production/Test.txt
+ls -l /remote/operation/
+ls -l /remote/management/
+exit
+su - contractor1
+redhat
+ls -l /remote/operation/
+cat /remote/operation/Welcome.txt
+echo TEST3 > /remote/operation/Test.txt
+cat /remote/operation/Test.txt
+ls -l /remote/management/
+ls -l /remote/production/
+exit
+mount | grep nfs
+exit
+lab netstorage-review grade
+lab netstorage-review finish

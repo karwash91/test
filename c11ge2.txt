@@ -1,0 +1,21 @@
+rht-vmview view workstation
+lab netsecurity-firewalls start
+ssh student@servera
+sudo yum install httpd mod_ssl -y
+student
+sudo bash -c "echo 'I am servera.' > /var/www/html/index.html"
+sudo systemctl enable --now httpd
+exit
+curl -k http
+curl -k https
+ssh student@servera
+sudo systemctl status nftables
+student
+sudo systemctl mask nftables
+sudo systemctl status nftables
+sudo systemctl status firewalld
+exit
+curl -k http
+curl -k https
+lab netsecurity-firewalls  grade
+lab netsecurity-firewalls  finish

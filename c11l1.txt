@@ -1,0 +1,30 @@
+lab netsecurity-review start
+curl http
+curl http
+ssh student@serverb
+systemctl is-active httpd
+sudo systemctl enable --now httpd
+student
+systemctl status httpd.service
+sudo sealert -a /var/log/audit/audit.log
+sudo semanage port -l | grep 'http'
+sudo semanage port -a -t http_port_t -p tcp 1001
+sudo semanage port -l | grep '^http_port_t'
+sudo systemctl enable --now httpd
+systemctl is-active httpd; systemctl is-enabled httpd
+exit
+curl http
+curl http
+ssh student@serverb
+firewall-cmd --get-default-zone
+sudo firewall-cmd --set-default-zone public
+sudo firewall-cmd --permanent --zone=public --list-all
+student
+sudo firewall-cmd --permanent --zone=public --add-port=1001/tcp
+sudo firewall-cmd --reload
+sudo firewall-cmd --permanent --zone=public --list-all
+exit
+curl http
+curl http
+lab netsecurity-review grade
+lab netsecurity-review finish

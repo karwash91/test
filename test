@@ -3,7 +3,7 @@ ifconfig
 ifconfig
 ip addr
 ifconfig -s
-ifconfig [interface-name]
+ifconfig eth0
 ifconfig eth0 down
 ifconfig
 ifconfig eth0 up

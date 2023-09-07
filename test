@@ -1,10 +1,12 @@
-ipconfig /displaydns
-ipconfig
-ipconfig /all
-ipconfig /release
-ipconfig /release6
-ipconfig
-ipconfig /renew
-ipconfig /flushdns
-ipconfig /registerdns
-ipconfig /displaydns
+ifconfig -h
+ifconfig
+ifconfig
+ip addr
+ifconfig -s
+ifconfig [interface-name]
+ifconfig eth0 down
+ifconfig
+ifconfig eth0 up
+ifconfig
+ifconfig eth0 promisc
+ifconfig eth0 -promisc

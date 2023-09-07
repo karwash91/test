@@ -1,11 +1,10 @@
-ping google.com
-ping google.com -n
-ping -s 100 localhost
-ping -s 100 google.com
-ping -c 5 cisco.com
-ping -4 localhost
-ping -6 localhost
-ping -M dont localhost -4 -c 5
-ping -4n -c20 127.0.0.1 -i 0.2
-ping -4n -c30 192.168.1.1 -f
-ping -4n -c30 192.168.1.1 -f -i 0.050
+ipconfig /displaydns
+ipconfig
+ipconfig /all
+ipconfig /release
+ipconfig /release6
+ipconfig
+ipconfig /renew
+ipconfig /flushdns
+ipconfig /registerdns
+ipconfig /displaydns

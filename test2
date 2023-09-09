@@ -1,0 +1,15 @@
+New-Item -Path "C:\Public" -ItemType Directory
+New-Item -Path "C:\Public\site1" -ItemType Directory
+New-Item -Path "C:\Public\site2" -ItemType Directory
+New-Item -Path "C:\Public\site3" -ItemType Directory
+
+Import-Module WebAdministration
+
+New-Website -Name "site1.washingtonk21.local" -PhysicalPath "C:\Public\site1" -Port 80 -HostHeader "site1.washingtonk21.local"
+New-Website -Name "site2.washingtonk21.local" -PhysicalPath "C:\Public\site2" -Port 90 -HostHeader "site2.washingtonk21.local"
+New-Website -Name "site3.washingtonk21.local" -PhysicalPath "C:\Public\site3" -Port 80 -HostHeader "site3.washingtonk21.local"
+
+
+Set-Content -Path "C:\Public\site1\index.html" -Value "washingtonk21"
+Set-Content -Path "C:\Public\site2\index.html" -Value "washingtonk21"
+Set-Content -Path "C:\Public\site3\index.html" -Value "washingtonk21"

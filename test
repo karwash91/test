@@ -1,10 +1,20 @@
-apt install pip
-pip install scanless
-scanless -h
-scanless -l
-scanless -t [Target hostname or IP] -s [Scanner Name]
-scanless -t scanme.nmap.org -s hackertarget
-scanless -t scanme.nmap.org -s spiderip
-scanless -t scanme.nmap.org -s t1shopper
-scanless -t scanme.nmap.org -s ipfingerprints
-scanless -t scanme.nmap.org -a
+<VirtualHost *:80>
+    ServerName app1.washingtonk21.local
+    DocumentRoot /var/www/vhosts/app1/Public
+    ErrorLog /var/log/httpd/app1_log/error.log
+    CustomLog /var/log/httpd/app1_log/access.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName app2.washingtonk21.local
+    DocumentRoot /var/www/vhosts/app2/Public
+    ErrorLog /var/log/httpd/app2_log/error.log
+    CustomLog /var/log/httpd/app2_log/access.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName app3.washingtonk21.local
+    DocumentRoot /var/www/vhosts/app3/Public
+    ErrorLog /var/log/httpd/app3_log/error.log
+    CustomLog /var/log/httpd/app3_log/access.log combined
+</VirtualHost>

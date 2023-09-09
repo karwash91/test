@@ -1,3 +1,4 @@
-Add-DnsServerResourceRecordA -Name "Site1" -IPv4Address "10.0.2.102" -ZoneName "washingtonk21.local" -TimeToLive 01:00:00
-Add-DnsServerResourceRecordA -Name "Site2" -IPv4Address "10.0.2.102" -ZoneName "washingtonk21.local" -TimeToLive 01:00:00
-Add-DnsServerResourceRecordA -Name "Site3" -IPv4Address "10.0.2.102" -ZoneName "washingtonk21.local" -TimeToLive 01:00:00
+New-Item -Path "C:\Public" -ItemType Directory
+New-Item -Path "C:\Public\site1" -ItemType Directory
+New-Item -Path "C:\Public\site2" -ItemType Directory
+New-Item -Path "C:\Public\site3" -ItemType Directory

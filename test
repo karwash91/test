@@ -1,20 +1,3 @@
-<VirtualHost *:80>
-    ServerName app1.washingtonk21.local
-    DocumentRoot /var/www/vhosts/app1/Public
-    ErrorLog /var/log/httpd/app1_log/error.log
-    CustomLog /var/log/httpd/app1_log/access.log combined
-</VirtualHost>
-
-<VirtualHost *:80>
-    ServerName app2.washingtonk21.local
-    DocumentRoot /var/www/vhosts/app2/Public
-    ErrorLog /var/log/httpd/app2_log/error.log
-    CustomLog /var/log/httpd/app2_log/access.log combined
-</VirtualHost>
-
-<VirtualHost *:80>
-    ServerName app3.washingtonk21.local
-    DocumentRoot /var/www/vhosts/app3/Public
-    ErrorLog /var/log/httpd/app3_log/error.log
-    CustomLog /var/log/httpd/app3_log/access.log combined
-</VirtualHost>
+Add-DnsServerResourceRecordA -Name "Site1" -IPv4Address "10.0.2.102" -ZoneName "washingtonk21.local" -TimeToLive 01:00:00
+Add-DnsServerResourceRecordA -Name "Site2" -IPv4Address "10.0.2.102" -ZoneName "washingtonk21.local" -TimeToLive 01:00:00
+Add-DnsServerResourceRecordA -Name "Site3" -IPv4Address "10.0.2.102" -ZoneName "washingtonk21.local" -TimeToLive 01:00:00

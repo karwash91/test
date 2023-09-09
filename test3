@@ -1,0 +1,1 @@
+New-NetFirewallRule -DisplayName "Inbound Port 90 Rule" -Direction Inbound -LocalPort 90 -Protocol TCP -Action Allow

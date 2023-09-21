@@ -1,15 +1,27 @@
-New-Item -Path "C:\Public" -ItemType Directory
-New-Item -Path "C:\Public\site1" -ItemType Directory
-New-Item -Path "C:\Public\site2" -ItemType Directory
-New-Item -Path "C:\Public\site3" -ItemType Directory
+cat << EOF > target_hashes.txt
+dc647eb65e6711e155375218212b3964
+eb61eead90e3b899c6bcbe27ac581660
+958152288f2d2303ae045cffc43a02cd
+2c9341ca4cf3d87b9e4eb905d6a3ec45
+75b71aa6842e450f12aca00fdf54c51d
+031cbcccd3ba6bd4d1556330995b8d08
+b5af0b804ff7238bce48adef1e0c213f
+EOF
 
-Import-Module WebAdministration
 
-New-Website -Name "site1.washingtonk21.local" -PhysicalPath "C:\Public\site1" -Port 80 -HostHeader "site1.washingtonk21.local"
-New-Website -Name "site2.washingtonk21.local" -PhysicalPath "C:\Public\site2" -Port 90 -HostHeader "site2.washingtonk21.local"
-New-Website -Name "site3.washingtonk21.local" -PhysicalPath "C:\Public\site3" -Port 80 -HostHeader "site3.washingtonk21.local"
+hashcat -h | more
 
 
-Set-Content -Path "C:\Public\site1\index.html" -Value "washingtonk21"
-Set-Content -Path "C:\Public\site2\index.html" -Value "washingtonk21"
-Set-Content -Path "C:\Public\site3\index.html" -Value "washingtonk21"
+sudo su -
+
+
+cd /usr/share/wordlists
+
+
+gunzip rockyou.txt.gz
+
+
+cd
+
+
+hashcat -m 0 -a 0 -o cracked.txt target_hashes.txt /usr/share/wordlists/rockyou.txt

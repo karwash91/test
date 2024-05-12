@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynatrace Self Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <h1>Dynatrace Self Service</h1>
+    <div class="sidebar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/form1">Form 1</a></li>
+            <li><a href="/form2">Form 2</a></li>
+            <li><a href="/form3">Form 3</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- Content will be replaced by form based on navigation -->
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynatrace Self Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <h1>Dynatrace Self Service</h1>
+    <div class="sidebar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/form1">Form 1</a></li>
+            <li><a href="/form2">Form 2</a></li>
+            <li><a href="/form3">Form 3</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- Your form content here -->
+        <form action="#" method="POST">
+            <h2>Form 1</h2>
+            <!-- Form fields -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #f0f0f0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar ul li a:hover {
+    color: #666;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}

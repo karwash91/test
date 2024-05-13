@@ -1,28 +1,44 @@
-/* styles.css */
-form {
-    max-width: 400px;
-    margin: 0 auto;
-}
+<!-- groceries.html -->
+{% extends 'base.html' %}
 
-select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+{% block content %}
+<h2>Groceries List</h2>
+<form method="post">
+    {% csrf_token %}
+    {% for field_name, field in form.visible_fields %}
+    <div>
+        <label for="id_{{ field_name }}">{{ field.label }}:</label>
+        {% if field.choices %}
+        <select name="{{ field_name }}" id="id_{{ field_name }}" multiple>
+            {% for value, label in field.choices %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+        {% else %}
+        {{ field }}
+        {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit">Add Items</button>
+</form>
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
+<h3>Available Items</h3>
+<ul>
+    {% for item in form.fields.items.choices %}
+        <li>{{ item.1 }}</li>
+    {% endfor %}
+</ul>
 
-button:hover {
-    background-color: #45a049;
-}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        {% for field_name, field in form.visible_fields %}
+        {% if field.choices %}
+        $('#id_{{ field_name }}').select2();
+        {% endif %}
+        {% endfor %}
+    });
+</script>
+{% endblock %}

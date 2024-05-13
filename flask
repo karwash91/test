@@ -1,31 +1,28 @@
-<!-- groceries.html -->
-{% extends 'base.html' %}
+/* styles.css */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
 
-{% block content %}
-<h2>Groceries List</h2>
-<form method="post">
-    {% csrf_token %}
-    <select name="items" multiple id="id_items">
-        {% for value, label in form.fields.items.choices %}
-            <option value="{{ value }}">{{ label }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Add Items</button>
-</form>
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
-<h3>Available Items</h3>
-<ul>
-    {% for item in form.fields.items.choices %}
-        <li>{{ item.1 }}</li>
-    {% endfor %}
-</ul>
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#id_items').select2();
-    });
-</script>
-{% endblock %}
+button:hover {
+    background-color: #45a049;
+}

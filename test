@@ -1,44 +1,41 @@
-<!-- groceries.html -->
-{% extends 'base.html' %}
+<!-- HTML form -->
+<form id="myForm">
+    <!-- Parent field -->
+    <select id="parentField">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
 
-{% block content %}
-<h2>Groceries List</h2>
-<form method="post">
-    {% csrf_token %}
-    {% for field_name, field in form.visible_fields %}
-    <div>
-        <label for="id_{{ field_name }}">{{ field.label }}:</label>
-        {% if field.choices %}
-        <select name="{{ field_name }}" id="id_{{ field_name }}" multiple>
-            {% for value, label in field.choices %}
-                <option value="{{ value }}">{{ label }}</option>
-            {% endfor %}
-        </select>
-        {% else %}
-        {{ field }}
-        {% endif %}
-    </div>
-    {% endfor %}
-    <button type="submit">Add Items</button>
+    <!-- Child field -->
+    <select id="childField">
+        <!-- Options will be dynamically populated -->
+    </select>
 </form>
 
-<h3>Available Items</h3>
-<ul>
-    {% for item in form.fields.items.choices %}
-        <li>{{ item.1 }}</li>
-    {% endfor %}
-</ul>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
-    $(document).ready(function() {
-        {% for field_name, field in form.visible_fields %}
-        {% if field.choices %}
-        $('#id_{{ field_name }}').select2();
-        {% endif %}
-        {% endfor %}
+    $(document).ready(function () {
+        $('#parentField').on('change', function () {
+            var parentId = $(this).val();
+
+            // Make an AJAX request to fetch options for the child field
+            $.ajax({
+                url: '/get_child_options/',  // URL to fetch child options
+                data: {
+                    parent_id: parentId
+                },
+                dataType: 'json',
+                success: function (data) {
+                    // Clear previous options
+                    $('#childField').empty();
+                    
+                    // Populate child options
+                    $.each(data.options, function (key, value) {
+                        $('#childField').append($('<option>').text(value).attr('value', key));
+                    });
+                }
+            });
+        });
     });
 </script>
-{% endblock %}

@@ -1,41 +1,47 @@
-<!-- HTML form -->
-<form id="myForm">
-    <!-- Parent field -->
-    <select id="parentField">
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-    </select>
+python
+Copy code
+# views.py
+from django.http import JsonResponse
+from .models import OptionModel
 
-    <!-- Child field -->
-    <select id="childField">
-        <!-- Options will be dynamically populated -->
-    </select>
-</form>
+def get_options(request):
+    term = request.GET.get('term', '')
+    options = OptionModel.objects.filter(name__icontains=term).values_list('id', 'name')
+    results = [{'id': option[0], 'text': option[1]} for option in options]
+    return JsonResponse({'results': results})
+python
+Copy code
+# urls.py
+from django.urls import path
+from . import views
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#parentField').on('change', function () {
-            var parentId = $(this).val();
+urlpatterns = [
+    path('get_options/', views.get_options, name='get_options'),
+    # Other URL patterns...
+]
+2. Client-side Setup:
 
-            // Make an AJAX request to fetch options for the child field
-            $.ajax({
-                url: '/get_child_options/',  // URL to fetch child options
-                data: {
-                    parent_id: parentId
-                },
-                dataType: 'json',
-                success: function (data) {
-                    // Clear previous options
-                    $('#childField').empty();
-                    
-                    // Populate child options
-                    $.each(data.options, function (key, value) {
-                        $('#childField').append($('<option>').text(value).attr('value', key));
-                    });
-                }
-            });
-        });
+javascript
+Copy code
+// In your HTML template or in a separate JavaScript file
+$(document).ready(function () {
+    $('#mySelect').select2({
+        ajax: {
+            url: '/get_options/',
+            dataType: 'json',
+            delay: 250, // Delay in milliseconds before the AJAX request is sent.
+            data: function (params) {
+                return {
+                    term: params.term // Search term entered by the user
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data.results
+                };
+            },
+            cache: true // Cache AJAX responses to avoid repeated requests
+        },
+        minimumInputLength: 1 // Minimum number of characters before the AJAX request is made
     });
-</script>
+});

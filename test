@@ -1,47 +1,14 @@
-python
-Copy code
-# views.py
-from django.http import JsonResponse
-from .models import OptionModel
-
-def get_options(request):
-    term = request.GET.get('term', '')
-    options = OptionModel.objects.filter(name__icontains=term).values_list('id', 'name')
-    results = [{'id': option[0], 'text': option[1]} for option in options]
-    return JsonResponse({'results': results})
-python
-Copy code
-# urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('get_options/', views.get_options, name='get_options'),
-    # Other URL patterns...
-]
-2. Client-side Setup:
-
-javascript
-Copy code
-// In your HTML template or in a separate JavaScript file
-$(document).ready(function () {
-    $('#mySelect').select2({
-        ajax: {
-            url: '/get_options/',
-            dataType: 'json',
-            delay: 250, // Delay in milliseconds before the AJAX request is sent.
-            data: function (params) {
-                return {
-                    term: params.term // Search term entered by the user
-                };
-            },
-            processResults: function (data) {
-                return {
-                    results: data.results
-                };
-            },
-            cache: true // Cache AJAX responses to avoid repeated requests
-        },
-        minimumInputLength: 1 // Minimum number of characters before the AJAX request is made
-    });
-});
+        templateResult: function (data) {
+            if (data.id === '') { // Add All option
+                return $('<span style="font-weight:bold;">').text(data.text);
+            } else {
+                return data.text;
+            }
+        }
+    }).on('select2:select', function (e) {
+        var selectedOption = e.params.data;
+        if (selectedOption.id === '') { // If "Add All" is selected
+            var allOptions = $(this).find('option:not(:selected)');
+            allOptions.prop('selected', true);
+            $(this).trigger('change');
+        }

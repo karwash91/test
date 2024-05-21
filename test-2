@@ -1,0 +1,160 @@
+import os
+import json
+import requests
+import yaml
+from datetime import datetime, timedelta
+
+class ArtifactoryManager:
+    def __init__(self, artifactory_url, credentials):
+        self.artifactory_url = artifactory_url
+        self.credentials = credentials
+
+    def load_order(self, filepath):
+        with open(filepath, 'r') as f:
+            return json.load(f)
+
+    def save_order(self, order, filepath):
+        with open(filepath, 'w') as f:
+            json.dump(order, f)
+
+    def upload_order(self, order, filepath):
+        with open(filepath, 'rb') as f:
+            response = requests.put(
+                f"{self.artifactory_url}/{filepath}",
+                auth=self.credentials,
+                data=f
+            )
+            response.raise_for_status()
+
+class ServiceNowManager:
+    def __init__(self, url, user, password):
+        self.url = url
+        self.auth = (user, password)
+
+    def check_ritm_approved(self, ritm_number):
+        response = requests.get(
+            f"{self.url}/api/now/table/sc_req_item/{ritm_number}",
+            auth=self.auth
+        )
+        response.raise_for_status()
+        result = response.json()
+        return result['result']['state'] == 'approved'
+
+    def update_ritm_task(self, ritm_number, status):
+        response = requests.patch(
+            f"{self.url}/api/now/table/sc_req_item/{ritm_number}",
+            auth=self.auth,
+            json={'state': status}
+        )
+        response.raise_for_status()
+
+class GitLabManager:
+    def __init__(self, config):
+        self.config = config
+        self.headers = {
+            'Private-Token': config['gitlab']['access_token']
+        }
+
+    def trigger_pipeline(self, project_id, variables):
+        url = f"{self.config['gitlab']['url']}/api/v4/projects/{project_id}/trigger/pipeline"
+        response = requests.post(url, headers=self.headers, data=variables)
+        response.raise_for_status()
+        return response.json()
+
+    def get_pipeline_status(self, project_id, pipeline_id):
+        url = f"{self.config['gitlab']['url']}/api/v4/projects/{project_id}/pipelines/{pipeline_id}"
+        response = requests.get(url, headers=self.headers)
+        response.raise_for_status()
+        return response.json()['status']
+
+class WorkflowManager:
+    def __init__(self, artifactory_manager, servicenow_manager, gitlab_manager):
+        self.artifactory_manager = artifactory_manager
+        self.servicenow_manager = servicenow_manager
+        self.gitlab_manager = gitlab_manager
+
+    def process_order(self, order):
+        if order['status'] == 'user_submitted':
+            if self.servicenow_manager.check_ritm_approved(order['ritm_number']):
+                order['status'] = 'manager_approved'
+                self.artifactory_manager.save_order(order, order['filepath'])
+                self.artifactory_manager.upload_order(order, order['filepath'])
+
+        if order['status'] == 'manager_approved':
+            form_class = order['form']['form_class']
+            project_config = self.gitlab_manager.config['projects'][form_class]
+            variables = self.transform_variables(order['form'])
+            pipeline_response = self.gitlab_manager.trigger_pipeline(project_config['id'], variables)
+            order['status'] = 'gitlab_submitted'
+            order['pipeline_id'] = pipeline_response['id']
+            self.artifactory_manager.save_order(order, order['filepath'])
+            self.artifactory_manager.upload_order(order, order['filepath'])
+            self.servicenow_manager.update_ritm_task(order['ritm_number'], 'gitlab_submitted')
+
+        if order['status'] == 'gitlab_submitted':
+            status = self.gitlab_manager.get_pipeline_status(order['project_id'], order['pipeline_id'])
+            if status == 'failed':
+                order['status'] = 'gitlab_failed'
+                self.artifactory_manager.save_order(order, order['filepath'])
+                self.artifactory_manager.upload_order(order, order['filepath'])
+                self.servicenow_manager.update_ritm_task(order['ritm_number'], 'gitlab_failed')
+            elif status == 'success':
+                order['status'] = 'maas_approved'
+                self.artifactory_manager.save_order(order, order['filepath'])
+                self.artifactory_manager.upload_order(order, order['filepath'])
+                self.servicenow_manager.update_ritm_task(order['ritm_number'], 'maas_approved')
+            elif status == 'waiting_for_approval':
+                if 'last_notified' not in order or (datetime.now() - datetime.fromisoformat(order['last_notified'])).days >= 1:
+                    self.send_approval_email('kareem.washington@truist.com', order)
+                    order['last_notified'] = datetime.now().isoformat()
+                    self.artifactory_manager.save_order(order, order['filepath'])
+                    self.artifactory_manager.upload_order(order, order['filepath'])
+
+        if order['status'] == 'maas_approved':
+            status = self.gitlab_manager.get_pipeline_status(order['project_id'], order['pipeline_id'])
+            if status == 'failed':
+                order['status'] = 'gitlab_failed'
+                self.artifactory_manager.save_order(order, order['filepath'])
+                self.artifactory_manager.upload_order(order, order['filepath'])
+                self.servicenow_manager.update_ritm_task(order['ritm_number'], 'gitlab_failed')
+            elif status == 'success':
+                order['status'] = 'gitlab_successful'
+                self.artifactory_manager.save_order(order, order['filepath'])
+                self.artifactory_manager.upload_order(order, order['filepath'])
+                self.servicenow_manager.update_ritm_task(order['ritm_number'], 'closed')
+
+    def transform_variables(self, form):
+        if form['form_class'] == 'maintenanceWindowForm':
+            return {
+                'start_time_hour': form['start_time'].split(':')[0],
+                'end_time_hour': form['end_time'].split(':')[0]
+            }
+        # Add other form transformations here
+        return {}
+
+    def send_approval_email(self, to_email, order):
+        # Implement email sending logic here
+        pass
+
+def load_config(config_file):
+    with open(config_file, 'r') as f:
+        return yaml.safe_load(f)
+
+def main():
+    config = load_config('main.yml')
+    artifactory_manager = ArtifactoryManager('https://artifactory.example.com', ('user', 'password'))
+    servicenow_manager = ServiceNowManager('https://servicenow.example.com', 'user', 'password')
+    gitlab_manager = GitLabManager(config)
+
+    workflow_manager = WorkflowManager(artifactory_manager, servicenow_manager, gitlab_manager)
+
+    output_dir = 'output'
+    for filename in os.listdir(output_dir):
+        if filename.endswith('.json'):
+            filepath = os.path.join(output_dir, filename)
+            order = artifactory_manager.load_order(filepath)
+            order['filepath'] = filepath
+            workflow_manager.process_order(order)
+
+if __name__ == '__main__':
+    main()

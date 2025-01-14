@@ -1,0 +1,44 @@
+from sentence_transformers import SentenceTransformer, util
+import json
+
+# Step 1: Load a pre-trained model
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Step 2: Define internal and industry policies
+internal_policies = [
+    "Employees must update their passwords every 90 days to ensure security. "
+    "Passwords must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    
+    "All employees must complete annual cybersecurity training by December 31st to maintain compliance with company standards.",
+    
+    "Remote access to internal systems is permitted only through the company-provided VPN. "
+    "Multi-factor authentication (MFA) must be enabled for all remote access."
+]
+
+industry_policies = [
+    "Users must regularly update their passwords, with a recommended cycle of no longer than 90 days. "
+    "Passwords should be strong, containing a mix of uppercase and lowercase letters, numbers, and symbols.",
+    
+    "Organizations should require employees to undergo annual cybersecurity awareness training to reduce the risk of breaches. "
+    "Training should include phishing awareness and secure data handling practices.",
+    
+    "Remote access to systems should be secured using encrypted VPNs. "
+    "Multi-factor authentication (MFA) is mandatory for all users accessing systems remotely."
+]
+
+# Step 3: Generate embeddings
+internal_embeddings = model.encode(internal_policies, convert_to_tensor=True)
+industry_embeddings = model.encode(industry_policies, convert_to_tensor=True)
+
+# Step 4: Compute similarities
+similarity_matrix = util.cos_sim(internal_embeddings, industry_embeddings)
+
+# Step 5: Map internal policies to the most similar industry policies
+mapping = {}
+for i, internal_policy in enumerate(internal_policies):
+    most_similar_idx = similarity_matrix[i].argmax().item()
+    mapping[internal_policy] = industry_policies[most_similar_idx]
+
+# Step 6: Print the mapping
+print("Policy Mapping:")
+print(json.dumps(mapping, indent=2))

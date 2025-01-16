@@ -1,0 +1,53 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Example arrays with internal and industry policies
+internal_policies = [
+    "Policy A: Adhere to security standards",
+    "Policy B: Backup data every 24 hours",
+    "Policy C: Use multi-factor authentication"
+]
+industry_policies = [
+    "Standard 1: Ensure data backup daily",
+    "Standard 2: Implement MFA across all logins",
+    "Standard 3: Follow basic security practices"
+]
+
+# Combine both sets for clustering
+all_policies = internal_policies + industry_policies
+
+# Step 1: Convert policies to numerical features using TF-IDF
+vectorizer = TfidfVectorizer()
+policy_vectors = vectorizer.fit_transform(all_policies)
+
+# Step 2: Perform clustering (e.g., k-means)
+num_clusters = len(all_policies) // 2  # Adjust clusters as needed
+kmeans = KMeans(n_clusters=num_clusters, random_state=42)
+kmeans.fit(policy_vectors)
+
+# Step 3: Map internal policies to closest clusters
+labels = kmeans.labels_[:len(internal_policies)]  # Internal policy cluster labels
+mapping = {}
+cosine_threshold = 0.5  # Adjust this threshold for matching policies (range: 0 to 1)
+
+# Compute cosine similarity between internal and industry policies
+for idx, label in enumerate(labels):
+    similar_indices = [i for i, l in enumerate(kmeans.labels_[len(internal_policies):]) if l == label]
+    internal_vector = policy_vectors[idx]
+    
+    # Only calculate similarity if there are similar indices
+    if similar_indices:
+        similarities = cosine_similarity(internal_vector, policy_vectors[similar_indices])
+        matched_policies = [
+            industry_policies[i] for i, similarity in zip(similar_indices, similarities[0])
+            if similarity > cosine_threshold
+        ]
+        
+        if matched_policies:
+            mapping[internal_policies[idx]] = matched_policies
+
+# Print the mapping
+print("Mapping of internal policies to similar industry policies:")
+for internal, matches in mapping.items():
+    print(f"{internal} -> {', '.join(matches)}")

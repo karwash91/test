@@ -1,5 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Example arrays with internal and industry policies
 internal_policies = [
@@ -28,10 +29,24 @@ kmeans.fit(policy_vectors)
 # Step 3: Map internal policies to closest clusters
 labels = kmeans.labels_[:len(internal_policies)]  # Internal policy cluster labels
 mapping = {}
+cosine_threshold = 0.5  # Adjust this threshold for matching policies (range: 0 to 1)
+
+# Compute cosine similarity between internal and industry policies
 for idx, label in enumerate(labels):
     similar_indices = [i for i, l in enumerate(kmeans.labels_[len(internal_policies):]) if l == label]
-    similar_policies = [industry_policies[i] for i in similar_indices]
-    mapping[internal_policies[idx]] = similar_policies
+    internal_vector = policy_vectors[idx]
+    
+    # Calculate cosine similarity for internal policy with industry policies in the same cluster
+    similarities = cosine_similarity(internal_vector, policy_vectors[similar_indices + len(internal_policies)])
+    
+    # Find matches above the threshold
+    matched_policies = [
+        industry_policies[i] for i, similarity in zip(similar_indices, similarities[0])
+        if similarity > cosine_threshold
+    ]
+    
+    if matched_policies:
+        mapping[internal_policies[idx]] = matched_policies
 
 # Print the mapping
 print("Mapping of internal policies to similar industry policies:")

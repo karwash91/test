@@ -1,0 +1,65 @@
+import argparse
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Standards text for testing
+standards_text = {
+    'Standard 1': 'Access control and patch management are critical for data protection.',
+    'Standard 2': 'Password policy ensures authentication and protects user accounts.'
+}
+
+# Function to map a control to standards with confidence scores
+def match_control_to_standards(control_id, control_text, standards_text, threshold=0.3):
+    # Prepare control and standards lists for TF-IDF
+    controls_list = [control_text]
+    standards_list = list(standards_text.values())
+
+    # TF-IDF Vectorization
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(controls_list + standards_list)
+
+    # Compute cosine similarity
+    similarity_scores = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:])[0]
+
+    # Match control to standards with scores
+    matches = []
+    for i, (standard_key, standard_text) in enumerate(standards_text.items()):
+        score = similarity_scores[i]
+        if score >= threshold:
+            matches.append({'standard': standard_key, 'score': round(score, 2)})
+
+    return matches
+
+# Main function for command-line input
+def main():
+    parser = argparse.ArgumentParser(description='Map a control to standards with confidence scores.')
+    parser.add_argument(
+        '--control',
+        required=True,
+        help='Input control in the format "CTR-ID: Control text"',
+    )
+    args = parser.parse_args()
+
+    # Parse control ID and text from input
+    try:
+        control_id, control_text = args.control.split(':', 1)
+        control_id = control_id.strip()
+        control_text = control_text.strip()
+    except ValueError:
+        print('Error: Please provide input in the format "CTR-ID: Control text".')
+        return
+
+    # Perform mapping
+    matches = match_control_to_standards(control_id, control_text, standards_text)
+
+    # Print results
+    print(f'Control {control_id} to Standard Matches:')
+    if matches:
+        for match in matches:
+            print(f'  Standard: {match["standard"]}, Confidence Score: {match["score"]}')
+    else:
+        print('  No matches found.')
+
+# Run the script
+if __name__ == '__main__':
+    main()

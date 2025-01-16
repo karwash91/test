@@ -1,0 +1,43 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Controls and policies as text for testing
+controls_text = {
+    "1": "Admin performs access control daily for data protection using audit logs.",
+    "2": "User ensures password policy on login for authentication using password strength rules.",
+    "3": "IT team conducts patch management weekly for vulnerability management using patch testing."
+}
+
+policies_text = {
+    "Policy 1": "Access control and patch management are critical for data protection.",
+    "Policy 2": "Password policy ensures authentication and protects user accounts."
+}
+
+# Convert controls and policies to lists for TF-IDF processing
+controls_list = list(controls_text.values())
+policies_list = list(policies_text.values())
+
+# TF-IDF Vectorization
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(controls_list + policies_list)
+
+# Compute cosine similarity
+similarity_matrix = cosine_similarity(tfidf_matrix[:len(controls_list)], tfidf_matrix[len(controls_list):])
+
+# Match controls to policies based on similarity
+def match_controls(similarity_matrix, controls, policies, threshold=0.3):
+    matches = {}
+    for i, control in enumerate(controls):
+        matches[control] = []
+        for j, policy in enumerate(policies):
+            if similarity_matrix[i, j] >= threshold:
+                matches[control].append(policy)
+    return matches
+
+# Run matching
+control_policy_matches = match_controls(similarity_matrix, controls_text.keys(), policies_text.keys())
+
+# Display results
+print("Control to Policy Matches:")
+for control, matched_policies in control_policy_matches.items():
+    print(f"Control {control} matches with: {matched_policies}")

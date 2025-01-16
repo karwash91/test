@@ -1,0 +1,62 @@
+import argparse
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Standards text for testing
+standards_text = {
+    'Standard 1': 'Access control and patch management are critical for data protection.',
+    'Standard 2': 'Password policy ensures authentication and protects user accounts.'
+}
+
+# Function to map controls to standards with confidence scores
+def match_controls_to_standards(controls_text, standards_text, threshold=0.3):
+    controls_list = list(controls_text.values())
+    standards_list = list(standards_text.values())
+
+    # TF-IDF Vectorization
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(controls_list + standards_list)
+
+    # Compute cosine similarity
+    similarity_matrix = cosine_similarity(tfidf_matrix[:len(controls_list)], tfidf_matrix[len(controls_list):])
+
+    # Match controls to standards with scores
+    matches = {}
+    for i, control_key in enumerate(controls_text.keys()):
+        matches[control_key] = []
+        for j, standard_key in enumerate(standards_text.keys()):
+            score = similarity_matrix[i, j]
+            if score >= threshold:
+                matches[control_key].append({'standard': standard_key, 'score': round(score, 2)})
+    return matches
+
+# Main function for command-line input
+def main():
+    parser = argparse.ArgumentParser(description='Map controls to standards with confidence scores.')
+    parser.add_argument(
+        '--controls',
+        required=True,
+        help='Comma-separated controls in the format "1:Text,2:Text,3:Text"',
+    )
+    args = parser.parse_args()
+
+    # Parse controls from command-line argument
+    controls_input = args.controls.split(',')
+    controls_text = {}
+    for item in controls_input:
+        key, text = item.split(':', 1)
+        controls_text[key.strip()] = text.strip()
+
+    # Perform mapping
+    matches = match_controls_to_standards(controls_text, standards_text)
+
+    # Print results
+    print('Control to Standard Matches:')
+    for control, matched_standards in matches.items():
+        print(f'Control {control}:')
+        for match in matched_standards:
+            print(f'  Standard: {match["standard"]}, Confidence Score: {match["score"]}')
+
+# Run the script
+if __name__ == '__main__':
+    main()

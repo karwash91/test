@@ -1,0 +1,12 @@
+Summary:
+	•	Elasticsearch: A distributed search and analytics engine used to run and scale search clusters.
+	•	CloudSearch: A fully managed AWS service for adding search functionality to applications, mainly for websites.
+	•	OpenSearch: An open-source search and analytics suite designed for log analytics, application monitoring, and search use cases.
+
+Approval Status:
+	•	Elasticsearch: In ServiceNow, it’s in the evaluation phase, approved with constraints in lower environments (Development, Sandbox, Lab) but unapproved in higher environments (Production, Pre-Production, Test). Confluence lists it as restricted.
+	•	CloudSearch: Unapproved in all environments except Sandbox and not reviewed in Confluence.
+	•	OpenSearch: Not yet reviewed for approval.
+
+Relevance to TKD Application:
+The TKD application requires AWS OpenSearch to index and store document embeddings. Elasticsearch appears to have similar functionality but is not fully approved beyond lower environments. CloudSearch is unlikely to be a fit-for-purpose alternative. The business needs a clear comparison of OpenSearch vs. Elasticsearch to determine if OpenSearch should be approved.

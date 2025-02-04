@@ -1,0 +1,188 @@
+Got it. I'll break this down into the following steps:
+
+Generate YAML Configuration File Example – I'll create one sample YAML file (overview.yml) with some placeholder data.
+Command to Create Other YAML Files – I'll provide a shell command to create all the necessary YAML files inside your service folder.
+Python Script (deploy.py) – This will:
+Read all YAML files from a given service folder.
+Render template.j2 using the data from those YAML files.
+Output the final markdown file into the docs folder.
+1. Example YAML Configuration File (overview.yml)
+This file will contain some placeholder data.
+
+yaml
+Copy
+Edit
+title: "AWS Elastic MapReduce (EMR)"
+description: "AWS EMR is a cloud big data platform that processes vast amounts of data using open-source tools like Apache Spark and Hadoop."
+2. Command to Create All YAML Files
+Run the following command inside a sample service folder (e.g., services/aws-elastic-map-reduce-emr/) to create all necessary YAML files:
+
+sh
+Copy
+Edit
+touch overview.yml \
+      service-definition.yml \
+      technical-capability-service-owner.yml \
+      use-cases.yml \
+      POC-information.yml \
+      approval-scope.yml \
+      security-and-operational-requirements-and-controls.yml \
+      network.yml \
+      IAM.yml \
+      data-protection.yml \
+      threat-and-vulnerability-management.yml \
+      logging-and-monitoring.yml \
+      configuration-and-change-management.yml \
+      security-compliance.yml \
+      high-availability-and-resiliency.yml \
+      out-of-scope.yml \
+      core-items-focus.yml
+This creates all the YAML files with the correct naming convention.
+
+3. Python Script (deploy.py)
+This script will:
+
+Loop through each service folder inside services/
+Read the corresponding template.j2
+Load all YAML files inside the service folder
+Render the Markdown output based on the template
+Save the final Markdown file inside docs/
+deploy.py
+python
+Copy
+Edit
+import os
+import yaml
+import jinja2
+
+# Define paths
+SERVICES_DIR = "services"
+DOCS_DIR = "docs"
+
+def load_yaml_files(service_path):
+    """Load all YAML files in a service folder into a dictionary."""
+    data = {}
+    for filename in os.listdir(service_path):
+        if filename.endswith(".yml"):
+            key = filename.replace(".yml", "").replace("-", "_")  # Normalize keys
+            with open(os.path.join(service_path, filename), "r") as file:
+                try:
+                    data[key] = yaml.safe_load(file)  # Parse YAML
+                except yaml.YAMLError as e:
+                    print(f"Error loading {filename}: {e}")
+    return data
+
+def render_template(service_name, service_path):
+    """Render the Jinja2 template for a service using its YAML data."""
+    template_path = os.path.join(service_path, "template.j2")
+    output_path = os.path.join(DOCS_DIR, f"{service_name}.md")
+
+    if not os.path.exists(template_path):
+        print(f"Skipping {service_name}: No template found")
+        return
+
+    # Load Jinja2 template
+    with open(template_path, "r") as template_file:
+        template_content = template_file.read()
+    
+    # Load YAML data
+    context = load_yaml_files(service_path)
+
+    # Render template
+    template = jinja2.Template(template_content)
+    rendered_content = template.render(context)
+
+    # Write to markdown file
+    os.makedirs(DOCS_DIR, exist_ok=True)
+    with open(output_path, "w") as output_file:
+        output_file.write(rendered_content)
+    
+    print(f"Generated {output_path}")
+
+def main():
+    """Iterate through each service and generate documentation."""
+    if not os.path.exists(SERVICES_DIR):
+        print(f"Error: '{SERVICES_DIR}' directory not found.")
+        return
+
+    for service_name in os.listdir(SERVICES_DIR):
+        service_path = os.path.join(SERVICES_DIR, service_name)
+        if os.path.isdir(service_path):
+            render_template(service_name, service_path)
+
+if __name__ == "__main__":
+    main()
+How It Works
+The script looks inside the services/ folder for service directories.
+It loads all .yml files in each service directory and stores their contents in a dictionary.
+It reads the template.j2 file inside the service folder and renders it using Jinja2 with the YAML data.
+It saves the resulting Markdown file (<service-name>.md) inside the docs/ directory.
+Example template.j2
+This is an example of what the template.j2 file might look like:
+
+nginx
+Copy
+Edit
+# {{ title }}
+
+{{ description }}
+
+## Service Definition
+{{ service_definition | default("No service definition available.") }}
+
+## Technical Capability & Service Owner
+{{ technical_capability_service_owner | default("No information provided.") }}
+
+## Use Cases
+{{ use_cases | default("No use cases defined.") }}
+
+## POC Information
+{{ POC_information | default("No POC details available.") }}
+
+## Approval Scope
+{{ approval_scope | default("No approval scope specified.") }}
+
+## Security and Operational Requirements and Controls
+{{ security_and_operational_requirements_and_controls | default("No security details provided.") }}
+
+## Network
+{{ network | default("No network information.") }}
+
+## IAM
+{{ IAM | default("No IAM information available.") }}
+
+## Data Protection
+{{ data_protection | default("No data protection details.") }}
+
+## Threat and Vulnerability Management
+{{ threat_and_vulnerability_management | default("No threat details available.") }}
+
+## Logging and Monitoring
+{{ logging_and_monitoring | default("No logging details provided.") }}
+
+## Configuration and Change Management
+{{ configuration_and_change_management | default("No configuration details.") }}
+
+## Security Compliance
+{{ security_compliance | default("No security compliance details.") }}
+
+## High Availability and Resiliency
+{{ high_availability_and_resiliency | default("No high availability details.") }}
+
+## Out of Scope
+{{ out_of_scope | default("No out-of-scope details.") }}
+
+## Core Items Focus
+{{ core_items_focus | default("No core items focus available.") }}
+Next Steps
+Copy the deploy.py script into your scripts/ folder.
+Run the touch command inside a test service folder to generate all required YAML files.
+Add template.j2 to the same folder with the structure shown above.
+Populate one or more YAML files with actual data.
+Run the script:
+sh
+Copy
+Edit
+python scripts/deploy.py
+Check the docs/ folder for the generated markdown files.
+This setup will allow you to scale easily as more services are added. Let me know if you need any refinements!

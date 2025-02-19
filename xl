@@ -1,0 +1,36 @@
+import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.worksheet.table import Table, TableStyleInfo
+
+# Generate xlsx
+xlsx_fname = "status.xlsx"
+formatted_rows = format_rows(services_list)  # Your existing function
+df = pd.DataFrame(formatted_rows)
+df.to_excel(xlsx_fname, index=False)
+
+# Open the created file with openpyxl
+wb = load_workbook(xlsx_fname)
+ws = wb.active
+
+# Define the table range
+table_range = f"A1:{chr(65 + len(df.columns) - 1)}{len(df) + 1}"
+table = Table(displayName="ServiceStatusTable", ref=table_range)
+
+# Apply a built-in table style
+style = TableStyleInfo(
+    name="TableStyleMedium9",
+    showFirstColumn=False,
+    showLastColumn=False,
+    showRowStripes=True,
+    showColumnStripes=False
+)
+table.tableStyleInfo = style
+ws.add_table(table)
+
+# Increase the header row height
+ws.row_dimensions[1].height = 30  # Double the default height (~15)
+
+# Save the updated file
+wb.save(xlsx_fname)
+
+print(f"Formatted Excel file '{xlsx_fname}' created successfully!")

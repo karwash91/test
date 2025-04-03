@@ -1,0 +1,34 @@
+🧭 How to Contribute to a Service Page
+
+This project is designed to make documenting your cloud service adoption process as simple and maintainable as possible. Each service has a config.yml file that powers its corresponding webpage. Updating this file is your main contribution — and it’s built to be reductive: start with everything, and narrow it down to only what applies.
+
+Here’s how to contribute effectively:
+
+🛠️ Edit the config.yml File
+
+Click the Edit section button on the service page to jump straight to the file editor for that service’s config.yml. Then follow these best practices:
+	•	✅ Use Markdown checkboxes (- [x]) to indicate selected options.
+	•	💬 Alternatively, comment out (#) options that don’t apply — or simply delete them.
+	•	🔗 When adding links, always use Markdown format:
+Example: [Design Document](https://link-to-your-doc)
+	•	👀 Look for fields labeled RESPONSIBLE — they show where your team is expected to contribute content or input.
+
+🚨 Don’t Leave Defaults
+
+Each service page displays an alert when default content still needs to be updated. After each commit, automated checks run to ensure that no placeholder or template content remains.
+
+⚠️ If you see this message on a service page:
+“Section contains default content and needs to be updated”
+…it’s your cue to open the editor and make changes!
+
+💬 Provide Feedback or Flag Issues
+
+Use the Create issue button to suggest improvements, report problems, or request guidance.
+
+🕓 Track Changes
+
+Click View history to review the commit log for the service’s config.yml. This helps with auditing updates or understanding when and why a change was made.
+
+⸻
+
+Let me know if you’d like to add visuals, walkthroughs, or quick-start examples to this section too!

@@ -1,0 +1,88 @@
+{
+  "features": [
+    {
+      "id": "1",
+      "name": "Cloud Readiness Score",
+      "description": "Take a quick assessment to see if you're ready to adopt cloud services.",
+      "tag": "Cloud Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "2",
+      "name": "Quickstart Wizard",
+      "description": "Answer a few questions and get guided steps to begin your cloud journey.",
+      "tag": "Cloud Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "3",
+      "name": "API Catalog",
+      "description": "Explore available APIs and integration points across our platforms.",
+      "tag": "Developer Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "4",
+      "name": "SDK Downloads",
+      "description": "Download SDKs and starter kits to accelerate your development.",
+      "tag": "Developer Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "5",
+      "name": "Usage Reports",
+      "description": "View cloud service usage and cost reports in one place.",
+      "tag": "Reporting Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "6",
+      "name": "Compliance Dashboard",
+      "description": "Check the compliance status of your cloud environments.",
+      "tag": "Reporting Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "7",
+      "name": "Environment Vending Machine",
+      "description": "Request and provision new sandbox or dev cloud environments instantly.",
+      "tag": "Cloud Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "8",
+      "name": "Cloud Cost Estimator",
+      "description": "Estimate monthly costs for your planned cloud deployments.",
+      "tag": "Cloud Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "9",
+      "name": "Governance Standards",
+      "description": "View cloud architecture and security governance guidelines.",
+      "tag": "Cloud Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "10",
+      "name": "Terraform Module Library",
+      "description": "Browse approved infrastructure modules for quick deployments.",
+      "tag": "Developer Portal",
+      "rally": "#",
+      "votes": 0
+    },
+    {
+      "id": "11",
+      "name": "Training & Quizzes",
+      "description": "Take short quizzes and learn best practices for cloud success.",
+      "tag": "Cloud Portal",
+      "r

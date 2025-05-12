@@ -1,0 +1,23 @@
+const addComment = async (featureId: string) => {
+  if (!newComment.trim()) return;
+
+  const comment = {
+    featureId,
+    author: 'Anonymous', // Or use a user input field
+    content: newComment,
+    timestamp: new Date().toISOString(),
+  };
+
+  await fetch(C_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(comment),
+  });
+
+  // Reload comments
+  fetch(C_API_URL)
+    .then(res => res.json())
+    .then(setComments);
+
+  setNewComment('');
+};

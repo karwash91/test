@@ -1,0 +1,52 @@
+import React, { useEffect, useState } from 'react';
+import type { Feature } from './types';
+
+const API_URL = 'http://localhost:4000/features';
+
+const FeatureList: React.FC = () => {
+  const [features, setFeatures] = useState<Feature[]>([]);
+  const [votedFeatures, setVotedFeatures] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(setFeatures);
+  }, []);
+
+  const upvote = async (feature: Feature) => {
+    const updatedVotes = feature.votes + 1;
+
+    await fetch(`${API_URL}/${feature.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ votes: updatedVotes })
+    });
+
+    setFeatures(features.map(f =>
+      f.id === feature.id ? { ...f, votes: updatedVotes } : f
+    ));
+    setVotedFeatures(prev => new Set(prev).add(feature.id));
+  };
+
+  return (
+    <div>
+      <h2>Feature Voting</h2>
+      <ul>
+        {features.map(f => (
+          <li key={f.id}>
+            {f.name} — {f.votes} votes
+            <button
+              onClick={() => upvote(f)}
+              disabled={votedFeatures.has(f.id)}
+              style={{ marginLeft: '8px' }}
+            >
+              {votedFeatures.has(f.id) ? 'Voted' : 'Upvote'}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default FeatureList;

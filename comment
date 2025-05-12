@@ -1,3 +1,29 @@
+{features.map(feature => (
+  <div key={feature.id}>
+    <h3>{feature.name}</h3>
+    <p>{feature.description}</p>
+    <button onClick={() => upvote(feature)}>Upvote ({feature.votes})</button>
+
+    <h4>Comments:</h4>
+    {comments.filter(c => c.featureId === feature.id).map(comment => (
+      <p key={comment.id}><strong>{comment.author}:</strong> {comment.content}</p>
+    ))}
+
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      addComment(feature.id);
+    }}>
+      <input
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+        placeholder="Add a comment..."
+      />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+))}
+
+
 const addComment = async (featureId: string) => {
   if (!newComment.trim()) return;
 

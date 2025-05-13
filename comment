@@ -1,3 +1,49 @@
+const [newComment, setNewComment] = useState<{ [featureId: string]: string }>({});
+
+
+<form onSubmit={(e) => {
+  e.preventDefault();
+  addComment(feature.id);
+}}>
+  <input
+    value={newComment[feature.id] || ''}
+    onChange={(e) =>
+      setNewComment(prev => ({ ...prev, [feature.id]: e.target.value }))
+    }
+    placeholder="Add a comment..."
+  />
+  <button type="submit">Submit</button>
+</form>
+
+
+
+const addComment = async (featureId: string) => {
+  const commentText = newComment[featureId];
+  if (!commentText?.trim()) return;
+
+  const comment = {
+    featureId,
+    author: 'Anonymous',
+    content: commentText,
+    timestamp: new Date().toISOString(),
+  };
+
+  await fetch(C_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(comment),
+  });
+
+  fetch(C_API_URL)
+    .then(res => res.json())
+    .then(setComments);
+
+  setNewComment(prev => ({ ...prev, [featureId]: '' }));
+};
+
+
+
+
 {features.map(feature => (
   <div key={feature.id}>
     <h3>{feature.name}</h3>

@@ -1,0 +1,114 @@
+Feature: Cloud Portal (cloud.truist.com)
+
+Objective: Establish a central cloud portal for cloud-related resources and service intake.
+Key Result: Successfully launch a POC site (cloud.truist-dev.com) and document final requirements for production.
+
+User Stories:
+	1.	Define Features and Requirements
+	•	Description: Document the cloud portal’s scope, requirements, and initial design.
+	•	Acceptance Criteria: Requirements document is reviewed and approved by key stakeholders.
+	2.	Align with Enterprise Architecture
+	•	Description: Meet with Enterprise Architecture to ensure portal design meets standards.
+	•	Acceptance Criteria: Architecture alignment document is created and approved.
+	3.	Request ServiceNow Application
+	•	Description: Submit a ServiceNow request to register the new cloud portal application.
+	•	Acceptance Criteria: ServiceNow request is submitted and acknowledged.
+	4.	Draft Cyber Architecture and Security Blueprints (L0, L1)
+	•	Description: Prepare architectural and security blueprints for review.
+	•	Acceptance Criteria: L0 and L1 documents are submitted for review.
+	5.	Obtain POC Approvals
+	•	Description: Work with DART, DCIO, GCO, and CCOE to secure POC approval.
+	•	Acceptance Criteria: Written approval from all four governance bodies is received.
+	6.	Build Infrastructure for POC
+	•	Description: Provision cloud account, configure IAM roles, and set up AD groups.
+	•	Acceptance Criteria: Cloud infrastructure and access controls are validated and in place.
+	7.	Provision DNS for POC
+	•	Description: Submit DNS request for cloud.truist-dev.com.
+	•	Acceptance Criteria: DNS routing works correctly for the POC domain.
+
+⸻
+
+Feature: DNS Short URL Redirect
+
+Objective: Implement a short URL redirect for ServiceNow control execution module.
+Key Result: DNS routing successfully implemented for controls.cloud.truist.com or cloud.truist.com/controls.
+
+User Story:
+	•	Description: Submit DNS short URL request and coordinate necessary routing setup.
+	•	Acceptance Criteria: Short URL routes to the correct ServiceNow landing page.
+
+⸻
+
+Feature: TRS-100 Innovation Challenge
+
+Objective: Productize the TRS-100 AI compliance solution.
+Key Result: Complete a successful demo for CIO Steve Hagerman and align design with enterprise architecture.
+
+User Stories:
+	1.	Coordinate CIO Demo
+	•	Description: Confirm readiness of TRS-100 team and schedule a demo for CIO Steve Hagerman.
+	•	Acceptance Criteria: Demo is scheduled and successfully completed.
+	2.	Align Design with Enterprise Architecture
+	•	Description: Meet with enterprise architects to ensure TRS-100 design is aligned with standards.
+	•	Acceptance Criteria: Design feedback is received and incorporated.
+	3.	Prepare for Legal Review
+	•	Description: Complete a POC to enable legal review for potential patenting.
+	•	Acceptance Criteria: POC is ready and documentation submitted to legal team.
+
+⸻
+
+Feature: TDLC and CI/CD Controls Assessment
+
+Objective: Assess maturity of CI/CD controls and identify gaps in alignment with TDLC processes.
+Key Result: Deliver maturity scorecard and documented recommendations.
+
+User Stories:
+	1.	TDLC Process Discovery
+	•	Description: Learn about the TDLC process and gather training materials.
+	•	Acceptance Criteria: Training is completed, and process documentation is created.
+	2.	KALI Platform Discovery
+	•	Description: Learn about the KALI compliance platform and its CI/CD integrations.
+	•	Acceptance Criteria: KALI capabilities are documented.
+	3.	Develop Maturity Scorecard
+	•	Description: Create a scorecard to evaluate CI/CD maturity.
+	•	Acceptance Criteria: Scorecard template is created and reviewed with manager.
+	4.	Document Gaps and Recommendations
+	•	Description: Identify and document current gaps in CI/CD and TDLC alignment.
+	•	Acceptance Criteria: Gap analysis document is completed and shared.
+
+⸻
+
+Feature: CTO Finding Status Portal Maintenance
+
+Objective: Maintain and enhance the CTO Finding Status Portal using PowerApps and SharePoint.
+Key Result: Complete all enhancement requests within each sprint.
+
+User Story:
+	•	Description: Perform regular maintenance and implement requested enhancements within 4 hours per week.
+	•	Acceptance Criteria: All weekly requests are reviewed, prioritized, and resolved as scheduled.
+
+⸻
+
+Feature: CSAP Maintenance and Enhancements
+
+Objective: Maintain and enhance CSAP as Code (GitLab Pages) and ServiceNow Catalog.
+Key Result: Complete all critical enhancement requests within the sprint timeline.
+
+User Stories:
+	1.	Maintain CSAP as Code GitLab Repository
+	•	Description: Provide updates and enhancements to the CSAP as Code repository.
+	•	Acceptance Criteria: New updates are deployed without errors; documentation is updated.
+	2.	ServiceNow Development Support
+	•	Description: Implement requested enhancements in the ServiceNow catalog item for CSAP.
+	•	Acceptance Criteria: Changes are implemented, tested, and deployed in ServiceNow.
+
+⸻
+
+Feature: CSAP Process Design Enhancements
+
+Objective: Redesign CSAP process to improve efficiency and governance.
+Key Result: Deliver stakeholder feedback summary and initial process recommendations.
+
+User Story:
+	•	Description: Meet with stakeholders to gather input on CSAP process redesign.
+	•	Acceptance Criteria: Stakeholder feedback is documented and presented for review.

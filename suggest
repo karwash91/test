@@ -1,0 +1,184 @@
+import React, { useState, useEffect, FormEvent, ChangeEvent } from "react";
+import {
+  TwcTheme, TwcUtil, TwcStack, TwcText, TwcCard, TwcCardBody, TwcTag, 
+  TwcLink, TwcButton, TwcButtonIcon, TwcDivider, TwcInput, TwcInline
+} from "@truist/twc-react";
+
+interface Feature {
+  id: number;
+  name: string;
+  description: string;
+  tag: string;
+  votes: number;
+}
+
+interface Comment {
+  featureId: number;
+  author: string;
+  content: string;
+  timestamp: string;
+}
+
+const API_URL = "http://localhost:4000"; // Adjust as needed
+
+const SuggestAFeature: React.FC = () => {
+  const [features, setFeatures] = useState<Feature[]>([]);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [votedFeatures, setVotedFeatures] = useState<Set<number>>(new Set());
+  const [newComment, setNewComment] = useState<{ [key: number]: string }>({});
+  const [newFeature, setNewFeature] = useState<{ name: string; description: string; tag: string }>({
+    name: "",
+    description: "",
+    tag: "",
+  });
+
+  useEffect(() => {
+    fetch(`${API_URL}/features`).then((res) => res.json()).then(setFeatures);
+    fetch(`${API_URL}/comments`).then((res) => res.json()).then(setComments);
+  }, []);
+
+  const upvote = async (feature: Feature) => {
+    const updatedVotes = feature.votes + 1;
+    await fetch(`${API_URL}/features/${feature.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ votes: updatedVotes }),
+    });
+
+    setFeatures((prev) => prev.map((f) => f.id === feature.id ? { ...f, votes: updatedVotes } : f));
+    setVotedFeatures((prev) => new Set(prev).add(feature.id));
+  };
+
+  const addComment = async (featureId: number) => {
+    const content = newComment[featureId];
+    if (!content?.trim()) return;
+
+    const comment: Comment = {
+      featureId,
+      author: "Anonymous",
+      content,
+      timestamp: new Date().toISOString(),
+    };
+
+    await fetch(`${API_URL}/comments`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(comment),
+    });
+
+    fetch(`${API_URL}/comments`).then((res) => res.json()).then(setComments);
+    setNewComment((prev) => ({ ...prev, [featureId]: "" }));
+  };
+
+  const addFeature = async (e: FormEvent) => {
+    e.preventDefault();
+    const { name, description, tag } = newFeature;
+    if (!name || !description || !tag) return;
+
+    const newFeat = { ...newFeature, votes: 0 };
+    await fetch(`${API_URL}/features`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newFeat),
+    });
+
+    fetch(`${API_URL}/features`).then((res) => res.json()).then(setFeatures);
+    setNewFeature({ name: "", description: "", tag: "" });
+  };
+
+  return (
+    <TwcTheme loadFonts mode="light">
+      <TwcUtil display="block" backgroundColor="bg-std" marginTop="2xl">
+        <TwcUtil display="flex" justifyContent="center" colorSet="main" padding="2xl" width="1300px">
+          <TwcStack spacing="lg">
+            {/* Add New Feature */}
+            <TwcText fontSize="h1" alignContent="center">Suggest a Feature</TwcText>
+            <form onSubmit={addFeature}>
+              <TwcStack spacing="md">
+                <TwcInput
+                  type="text"
+                  value={newFeature.name}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => 
+                    setNewFeature((prev) => ({ ...prev, name: e.target.value }))
+                  }
+                  placeholder="Feature Name"
+                />
+                <TwcInput
+                  type="text"
+                  value={newFeature.description}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => 
+                    setNewFeature((prev) => ({ ...prev, description: e.target.value }))
+                  }
+                  placeholder="Feature Description"
+                />
+                <TwcInput
+                  type="text"
+                  value={newFeature.tag}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => 
+                    setNewFeature((prev) => ({ ...prev, tag: e.target.value }))
+                  }
+                  placeholder="Tag"
+                />
+                <TwcButton type="submit" density="compact">Add Feature</TwcButton>
+              </TwcStack>
+            </form>
+
+            {/* Feature Cards */}
+            {features.map((f) => (
+              <TwcCard key={f.id}>
+                <TwcCardBody>
+                  <TwcStack>
+                    <TwcText fontSize="h3">{f.name}</TwcText>
+                    <TwcText fontSize="p">{f.description}</TwcText>
+                    <TwcTag tagStyle="info">{f.tag}</TwcTag>
+
+                    <TwcButton 
+                      ctaStyle="secondary" 
+                      onClick={() => upvote(f)} 
+                      disabled={votedFeatures.has(f.id)}
+                    >
+                      Upvote <TwcButtonIcon icon="Thumbs-Up" animation-dir="up" /> 
+                      ({f.votes} votes)
+                    </TwcButton>
+
+                    <TwcDivider />
+
+                    {/* Comments Section */}
+                    <TwcText fontSize="h5" fontWeight="semibold">
+                      Comments ({comments.filter(c => c.featureId === f.id).length})
+                    </TwcText>
+                    {comments.filter((c) => c.featureId === f.id).map((comment, idx) => (
+                      <TwcInline key={idx} align="top">
+                        <TwcText fontSize="s"><strong>{comment.author}:</strong> {comment.content}</TwcText>
+                      </TwcInline>
+                    ))}
+
+                    {/* Add Comment */}
+                    <form onSubmit={(e) => {
+                      e.preventDefault();
+                      addComment(f.id);
+                    }}>
+                      <TwcStack spacing="md">
+                        <TwcInput
+                          type="text"
+                          value={newComment[f.id] || ""}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) => 
+                            setNewComment((prev) => ({ ...prev, [f.id]: e.target.value }))
+                          }
+                          placeholder="Write a comment..."
+                        />
+                        <TwcButton type="submit" density="compact">Submit</TwcButton>
+                      </TwcStack>
+                    </form>
+                  </TwcStack>
+                </TwcCardBody>
+              </TwcCard>
+            ))}
+          </TwcStack>
+        </TwcUtil>
+      </TwcUtil>
+    </TwcTheme>
+  );
+};
+
+export default SuggestAFeature;
